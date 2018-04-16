@@ -1,23 +1,17 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, Router } from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import DashboardPage from "./components/pages/DashboardPage";
-import App from "./App";
-import history from "./history";
+import { history } from "./helpers";
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
-        <Route exact path="/" component={LoginPage} history={history} />
-        <Route
-          exact
-          path="/dashboard"
-          component={DashboardPage}
-          history={history}
-        />
+        <Route exact path="/" component={LoginPage} />
+        <Route exact path="/dashboard" component={DashboardPage} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

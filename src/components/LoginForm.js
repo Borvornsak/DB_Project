@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
-import history from "../history";
+import { Form, Icon, Input, Button } from "antd";
+import { connect } from "react-redux";
+import { userActions } from "../actions";
 const FormItem = Form.Item;
 
 const Container = styled.div`
@@ -18,15 +19,39 @@ const Container = styled.div`
 `;
 
 class NormalLoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // reset login status
+    this.props.dispatch(userActions.logout());
+
+    this.state = {
+      username: "",
+      password: "",
+      submitted: false
+    };
+  }
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ submitted: true });
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        history.push("/dashboard");
       }
     });
+    const { username, password } = this.state;
+    const { dispatch } = this.props;
+    if (username && password) {
+      dispatch(userActions.login(username, password));
+    }
   };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -50,6 +75,8 @@ class NormalLoginForm extends React.Component {
                   <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
                 placeholder="Username"
+                name="username"
+                onChange={this.handleChange}
               />
             )}
           </FormItem>
@@ -65,6 +92,8 @@ class NormalLoginForm extends React.Component {
                 }
                 type="password"
                 placeholder="Password"
+                name="password"
+                onChange={this.handleChange}
               />
             )}
           </FormItem>
@@ -82,6 +111,13 @@ class NormalLoginForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  const { loggingIn } = state.authentication;
+  return {
+    loggingIn
+  };
+};
+
 const LoginForm = Form.create()(NormalLoginForm);
 
-export default LoginForm;
+export default connect(mapStateToProps)(LoginForm);
