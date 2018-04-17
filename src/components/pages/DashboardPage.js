@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { Layout, Button } from "antd";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import MenuInSider from "../MenuInSider";
 import UserInfoCard from "../UserInfoCard";
-import "antd/dist/antd.css";
 
 const { Content, Sider } = Layout;
+
+const WrappedDiv = styled.div`
+width: 100%;
+position: absolute;
+bottom: 5vh;
+display: flex,
+alig-items: center;
+justify-content: center;
+`;
 
 class DashboardPage extends Component {
   render() {
@@ -17,24 +26,17 @@ class DashboardPage extends Component {
           onCollapse={(collapsed, type) => {
             console.log(collapsed, type);
           }}
+          width="250"
         >
           <UserInfoCard />
           <MenuInSider />
-          <Link
-            to="/"
-            style={{
-              width: "100%",
-              position: "absolute",
-              bottom: "5vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Button type="danger" size="large">
-              LOGOUT
-            </Button>
-          </Link>
+          <WrappedDiv>
+            <Link to="/">
+              <Button type="danger" size="large">
+                LOGOUT
+              </Button>
+            </Link>
+          </WrappedDiv>
         </Sider>
         <Layout>
           <Content style={{ margin: "24px 16px 0" }}>

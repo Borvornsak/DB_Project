@@ -16,7 +16,7 @@ const Card = styled.div`
   background: #364353;
   color: white;
   width: 90%;
-  padding: 10px 10px;
+  padding: 20px 20px;
 `;
 
 const UserInfoCard = ({ firstName, lastName }) => {
