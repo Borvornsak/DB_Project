@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout } from "antd";
-import LoginForm from "../LoginForm";
+import { LoginForm } from "../components";
+
 const { Content } = Layout;
 
 const LoginPage = () => (

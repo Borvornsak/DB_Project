@@ -1,8 +1,7 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import { connect } from "react-redux";
-import LoginPage from "../components/pages/LoginPage";
-import DashboardPage from "../components/pages/DashboardPage";
+import { LoginPage, DashboardPage } from "../pages";
 import { history } from "../helpers";
 import PrivateRoute from "./PrivateRoute";
 import { alertActions } from "../actions";
@@ -12,7 +11,7 @@ class MainRoutes extends React.Component {
     super(props);
 
     // this line is required to work on plunker because the app preview runs on a subfolder url
-    //history.push("/");
+    // history.push("/");
 
     const { dispatch } = this.props;
     history.listen((location, action) => {
@@ -25,7 +24,7 @@ class MainRoutes extends React.Component {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+          <PrivateRoute path="/dashboard" component={DashboardPage} />
         </Switch>
       </Router>
     );

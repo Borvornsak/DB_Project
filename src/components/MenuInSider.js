@@ -1,10 +1,28 @@
 import React from "react";
 import { Menu, Icon } from "antd";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { history } from "../helpers";
 
 const { SubMenu } = Menu;
 
 class MenuInSider extends React.Component {
+  handleStudentSelected = e => {
+    const head = "/dashboard";
+    const features = [
+      "",
+      "/register",
+      "/configure",
+      "/grade",
+      "/transcript",
+      "/graduate",
+      "/fee",
+      "/timetable",
+      "/exam"
+    ];
+    let path = head + features[parseInt(e.key, features.length)];
+    history.push(path);
+  };
   render() {
     const { userType } = this.props;
     return (
@@ -13,8 +31,8 @@ class MenuInSider extends React.Component {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["1"]}
             defaultOpenKeys={["sub1", "sub2", "sub3", "sub4"]}
+            onSelect={this.handleStudentSelected}
           >
             <SubMenu
               key="sub1"
@@ -61,8 +79,8 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="8">ตรวจสอบตารางเรียน</Menu.Item>
-              <Menu.Item key="7">ตรวจสอบห้องสอบ</Menu.Item>
+              <Menu.Item key="7">ตรวจสอบตารางเรียน</Menu.Item>
+              <Menu.Item key="8">ตรวจสอบห้องสอบ</Menu.Item>
             </SubMenu>
           </Menu>
         )}
@@ -71,7 +89,6 @@ class MenuInSider extends React.Component {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["1"]}
             defaultOpenKeys={["sub1"]}
             style={{ margin: "50px 0" }}
           >
@@ -83,7 +100,9 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="1">บันทึกผลการเรียนนิสิต</Menu.Item>
+              <Link to="">
+                <Menu.Item key="1">บันทึกผลการเรียนนิสิต</Menu.Item>
+              </Link>
               <Menu.Item key="2" style={{ height: "60px", lineHeight: "2em" }}>
                 ติดตามผลการเรียนของ<br />นิสิตในที่ปรึกษา
               </Menu.Item>
@@ -95,7 +114,6 @@ class MenuInSider extends React.Component {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["1"]}
             defaultOpenKeys={["sub1"]}
             style={{ margin: "50px 0" }}
           >

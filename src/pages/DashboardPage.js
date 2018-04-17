@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Layout, Button } from "antd";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import MenuInSider from "../MenuInSider";
-import UserInfoCard from "../UserInfoCard";
+import { MenuInSider, UserInfoCard } from "../components";
+import { MenuRoutes } from "../routes";
 
 const { Content, Sider } = Layout;
 
@@ -16,7 +16,7 @@ alig-items: center;
 justify-content: center;
 `;
 
-class DashboardPage extends Component {
+class DashboardPage extends React.Component {
   render() {
     return (
       <Layout className="layout" style={{ height: "100vh" }}>
@@ -48,7 +48,7 @@ class DashboardPage extends Component {
                 minHeight: 360
               }}
             >
-              content
+              <MenuRoutes />
             </div>
           </Content>
         </Layout>

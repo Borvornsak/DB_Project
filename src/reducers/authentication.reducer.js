@@ -6,7 +6,7 @@ import { userConstants } from "../constants";
 const initialState = {
   loggedIn: true,
   user: "beam",
-  userType: "officer",
+  userType: "student",
   firstName: "บวรศักย์",
   lastName: "ลออรัตนพงศ์"
 };
