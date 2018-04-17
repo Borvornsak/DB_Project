@@ -12,7 +12,7 @@ class MainRoutes extends React.Component {
     super(props);
 
     // this line is required to work on plunker because the app preview runs on a subfolder url
-    history.push("/");
+    //history.push("/");
 
     const { dispatch } = this.props;
     history.listen((location, action) => {

@@ -8,7 +8,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   //   position: absolute;
-  margin: 3vh 0px;
+  margin: 2vh 0px 0px;
 `;
 
 const Card = styled.div`
@@ -16,7 +16,7 @@ const Card = styled.div`
   background: #364353;
   color: white;
   width: 90%;
-  padding: 20px 20px;
+  padding: 10px 20px;
 `;
 
 const UserInfoCard = ({ firstName, lastName }) => {
@@ -24,8 +24,8 @@ const UserInfoCard = ({ firstName, lastName }) => {
     <Container>
       <Card>
         <h1 style={{ color: "white" }}>User Info</h1>
-        <p>First name: {firstName}</p>
-        <p>Last name: {lastName}</p>
+        <p>ชื่อ: {firstName}</p>
+        <p>นามสกุล: {lastName}</p>
       </Card>
     </Container>
   );

@@ -10,7 +10,7 @@ const { Content, Sider } = Layout;
 const WrappedDiv = styled.div`
 width: 100%;
 position: absolute;
-bottom: 5vh;
+bottom: 2vh;
 display: flex,
 alig-items: center;
 justify-content: center;
@@ -33,14 +33,21 @@ class DashboardPage extends Component {
           <WrappedDiv>
             <Link to="/">
               <Button type="danger" size="large">
-                LOGOUT
+                Logout
               </Button>
             </Link>
           </WrappedDiv>
         </Sider>
         <Layout>
-          <Content style={{ margin: "24px 16px 0" }}>
-            <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
+          <Content style={{ margin: "24px 16px", height: "100%" }}>
+            <div
+              style={{
+                padding: 24,
+                background: "#fff",
+                height: "100%",
+                minHeight: 360
+              }}
+            >
               content
             </div>
           </Content>
