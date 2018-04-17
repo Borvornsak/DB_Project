@@ -15,11 +15,13 @@ function login(username, password) {
     userService.login(username, password).then(
       response => {
         dispatch(success({ username }));
+        dispatch(alertActions.success("Login success"));
         history.push("/dashboard");
       },
       error => {
+        console.log(error);
         dispatch(failure(error));
-        dispatch(alertActions.error(error));
+        dispatch(alertActions.error("Username or password is incorrect."));
       }
     );
   };

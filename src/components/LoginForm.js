@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Form, Icon, Input, Button } from "antd";
+import { Form, Icon, Input, Button, Alert } from "antd";
 import { connect } from "react-redux";
 import { userActions } from "../actions";
 const FormItem = Form.Item;
@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 const Container = styled.div`
   border-radius: 5px;
   width: 30vw;
-  height: 40vh;
+  // height: auto;
   padding: 40px 40px;
   background: white;
   position: fixed; /* or absolute */
@@ -54,8 +54,12 @@ class NormalLoginForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { alert } = this.props;
     return (
       <Container>
+        {alert.message && (
+          <Alert description={alert.message} type={alert.type} showIcon />
+        )}
         <Form
           onSubmit={this.handleSubmit}
           className="login-form"
@@ -113,8 +117,10 @@ class NormalLoginForm extends React.Component {
 
 const mapStateToProps = state => {
   const { loggingIn } = state.authentication;
+  const { alert } = state;
   return {
-    loggingIn
+    loggingIn,
+    alert
   };
 };
 

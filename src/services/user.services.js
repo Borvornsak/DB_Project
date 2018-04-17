@@ -8,7 +8,8 @@ function login(username, password) {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify({ username, password })
   };
@@ -23,4 +24,5 @@ function login(username, password) {
 function logout() {
   // // remove user from local storage to log user out
   // localStorage.removeItem('user');
+  return true;
 }
