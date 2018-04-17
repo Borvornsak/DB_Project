@@ -67,7 +67,7 @@ class NormalLoginForm extends React.Component {
             width: "100%"
           }}
         >
-          <h1 style={{ textAlign: "center" }}>Log In</h1>
+          <h1 style={{ fontSize: "3em", textAlign: "center" }}>Log In</h1>
           <FormItem>
             {getFieldDecorator("userName", {
               rules: [
@@ -81,6 +81,7 @@ class NormalLoginForm extends React.Component {
                 placeholder="Username"
                 name="username"
                 onChange={this.handleChange}
+                size="large"
               />
             )}
           </FormItem>
@@ -98,6 +99,7 @@ class NormalLoginForm extends React.Component {
                 placeholder="Password"
                 name="password"
                 onChange={this.handleChange}
+                size="large"
               />
             )}
           </FormItem>
@@ -107,6 +109,7 @@ class NormalLoginForm extends React.Component {
             className="login-form-button"
             style={{ width: "100%" }}
             loading={loggingIn}
+            size="large"
           >
             Log in
           </Button>

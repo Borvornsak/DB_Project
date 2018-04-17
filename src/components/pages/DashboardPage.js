@@ -5,7 +5,7 @@ import MenuInSider from "../MenuInSider";
 import UserInfoCard from "../UserInfoCard";
 import "antd/dist/antd.css";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 class DashboardPage extends Component {
   render() {
@@ -37,15 +37,11 @@ class DashboardPage extends Component {
           </Link>
         </Sider>
         <Layout>
-          <Header style={{ background: "#fff", padding: 0 }} />
           <Content style={{ margin: "24px 16px 0" }}>
             <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
               content
             </div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2016 Created by Ant UED
-          </Footer>
         </Layout>
       </Layout>
     );
