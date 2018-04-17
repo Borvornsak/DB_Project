@@ -14,6 +14,7 @@ function login(username, password) {
 
     userService.login(username, password).then(
       response => {
+        console.log(response);
         dispatch(success({ username }));
         dispatch(alertActions.clear());
         history.push("/dashboard");

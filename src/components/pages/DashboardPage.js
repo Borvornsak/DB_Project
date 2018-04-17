@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Layout, Menu, Icon, Button } from "antd";
+import { Layout, Button } from "antd";
 import { Link } from "react-router-dom";
+import MenuInSider from "../MenuInSider";
+import UserInfoCard from "../UserInfoCard";
 import "antd/dist/antd.css";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -16,26 +18,8 @@ class DashboardPage extends Component {
             console.log(collapsed, type);
           }}
         >
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span className="nav-text">nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span className="nav-text">nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span className="nav-text">nav 3</span>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Icon type="user" />
-              <span className="nav-text">nav 4</span>
-            </Menu.Item>
-          </Menu>
-
+          <UserInfoCard />
+          <MenuInSider />
           <Link
             to="/"
             style={{
@@ -47,7 +31,7 @@ class DashboardPage extends Component {
               justifyContent: "center"
             }}
           >
-            <Button type="danger" size="large">
+            <Button type="primary" size="large">
               LOGOUT
             </Button>
           </Link>
