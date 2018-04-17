@@ -31,7 +31,7 @@ class DashboardPage extends Component {
               justifyContent: "center"
             }}
           >
-            <Button type="primary" size="large">
+            <Button type="danger" size="large">
               LOGOUT
             </Button>
           </Link>
