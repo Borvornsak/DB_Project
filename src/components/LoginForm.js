@@ -54,7 +54,7 @@ class NormalLoginForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { alert } = this.props;
+    const { alert, loggingIn } = this.props;
     return (
       <Container>
         {alert.message && (
@@ -106,6 +106,7 @@ class NormalLoginForm extends React.Component {
             htmlType="submit"
             className="login-form-button"
             style={{ width: "100%" }}
+            loading={loggingIn}
           >
             Log in
           </Button>

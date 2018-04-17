@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Button } from "antd";
+import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -34,6 +35,22 @@ class DashboardPage extends Component {
               <span className="nav-text">nav 4</span>
             </Menu.Item>
           </Menu>
+
+          <Link
+            to="/"
+            style={{
+              width: "100%",
+              position: "absolute",
+              bottom: "5vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Button type="danger" size="large">
+              LOGOUT
+            </Button>
+          </Link>
         </Sider>
         <Layout>
           <Header style={{ background: "#fff", padding: 0 }} />

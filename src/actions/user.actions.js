@@ -19,7 +19,6 @@ function login(username, password) {
         history.push("/dashboard");
       },
       error => {
-        console.log(error);
         dispatch(failure(error));
         dispatch(alertActions.error("Username or password is incorrect."));
       }

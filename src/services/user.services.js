@@ -3,6 +3,9 @@ export const userService = {
   logout
 };
 
+const delay = time => result =>
+  new Promise(resolve => setTimeout(() => resolve(result), time));
+
 function login(username, password) {
   const requestOptions = {
     method: "POST",
@@ -13,12 +16,14 @@ function login(username, password) {
     },
     body: JSON.stringify({ username, password })
   };
-  return fetch("http://localhost:7555/login", requestOptions).then(response => {
-    if (!response.ok) {
-      return Promise.reject(response.statusText);
-    }
-    return response;
-  });
+  return fetch("http://localhost:7555/login", requestOptions)
+    .then(delay(1000))
+    .then(response => {
+      if (!response.ok) {
+        return Promise.reject(response.statusText);
+      }
+      return Promise.resolve(response);
+    });
 }
 
 function logout() {
