@@ -6,9 +6,9 @@ import { userConstants } from "../constants";
 const initialState = {
   loggedIn: true,
   user: "beam",
-  userType: "student",
-  firstName: "บวรศักย์",
-  lastName: "ลออรัตนพงศ์"
+  UserType: "Student",
+  FirstName: "บวรศักย์",
+  LastName: "ลออรัตนพงศ์"
 };
 
 export function authentication(state = initialState, action) {
@@ -21,10 +21,7 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        user: action.user,
-        userType: "student",
-        firstName: "Borvornsak",
-        lastName: "Laoratanapong"
+        ...action.user
       };
     case userConstants.LOGIN_FAILURE:
       return {};

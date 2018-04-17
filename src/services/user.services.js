@@ -22,7 +22,7 @@ function login(username, password) {
       if (!response.ok) {
         return Promise.reject(response.statusText);
       }
-      return Promise.resolve(response);
+      return response.json();
     });
 }
 

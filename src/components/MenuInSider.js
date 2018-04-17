@@ -1,7 +1,6 @@
 import React from "react";
 import { Menu, Icon } from "antd";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { history } from "../helpers";
 
 const { SubMenu } = Menu;
@@ -27,7 +26,7 @@ class MenuInSider extends React.Component {
     const { userType } = this.props;
     return (
       <div>
-        {userType === "student" && (
+        {userType === "Student" && (
           <Menu
             theme="dark"
             mode="inline"
@@ -85,7 +84,7 @@ class MenuInSider extends React.Component {
           </Menu>
         )}
 
-        {userType === "teacher" && (
+        {userType === "Teacher" && (
           <Menu
             theme="dark"
             mode="inline"
@@ -100,9 +99,7 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Link to="">
-                <Menu.Item key="1">บันทึกผลการเรียนนิสิต</Menu.Item>
-              </Link>
+              <Menu.Item key="1">บันทึกผลการเรียนนิสิต</Menu.Item>
               <Menu.Item key="2" style={{ height: "60px", lineHeight: "2em" }}>
                 ติดตามผลการเรียนของ<br />นิสิตในที่ปรึกษา
               </Menu.Item>
@@ -110,7 +107,7 @@ class MenuInSider extends React.Component {
           </Menu>
         )}
 
-        {userType === "officer" && (
+        {userType === "Officer" && (
           <Menu
             theme="dark"
             mode="inline"
@@ -135,8 +132,8 @@ class MenuInSider extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { userType } = state.authentication;
-  return { userType };
+  const { UserType } = state.authentication;
+  return { userType: UserType };
 };
 
 export default connect(mapStateToProps)(MenuInSider);

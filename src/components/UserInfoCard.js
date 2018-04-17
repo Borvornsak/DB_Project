@@ -32,8 +32,8 @@ const UserInfoCard = ({ firstName, lastName }) => {
 };
 
 const mapStateToProps = state => {
-  const { firstName, lastName } = state.authentication;
-  return { firstName, lastName };
+  const { FirstName, LastName } = state.authentication;
+  return { firstName: FirstName, lastName: LastName };
 };
 
 export default connect(mapStateToProps)(UserInfoCard);
