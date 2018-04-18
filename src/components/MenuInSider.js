@@ -44,10 +44,6 @@ class MenuInSider extends React.Component {
               <Menu.Item key="1">ลงทะเบียนเรียน</Menu.Item>
               <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
             </SubMenu>
-            {/* <Menu.Item key="3">
-              <Icon type="area-chart" />
-              <span>ตรวจสอบผลการศึกษา</span>
-            </Menu.Item> */}
             <SubMenu
               key="sub2"
               title={
@@ -132,8 +128,8 @@ class MenuInSider extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { UserType } = state.authentication;
-  return { userType: UserType };
+  const { userType } = state.authentication;
+  return { userType };
 };
 
 export default connect(mapStateToProps)(MenuInSider);

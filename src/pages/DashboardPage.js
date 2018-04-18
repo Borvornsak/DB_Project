@@ -24,7 +24,7 @@ class DashboardPage extends React.Component {
           breakpoint="lg"
           collapsedWidth="0"
           onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
+            //console.log(collapsed, type);
           }}
           width="250"
         >
@@ -39,12 +39,11 @@ class DashboardPage extends React.Component {
           </WrappedDiv>
         </Sider>
         <Layout>
-          <Content style={{ margin: "24px 16px", height: "100%" }}>
+          <Content style={{ margin: "24px 16px" }}>
             <div
               style={{
                 padding: 24,
                 background: "#fff",
-                height: "100%",
                 minHeight: 360
               }}
             >
