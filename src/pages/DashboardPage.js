@@ -1,8 +1,8 @@
 import React from "react";
-import { Layout, Button } from "antd";
+import { Layout, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { MenuInSider, UserInfoCard } from "../components";
+import { MenuInSider, UserInfoCard, UserInfo } from "../components";
 import { MenuRoutes } from "../routes";
 
 const { Content, Sider } = Layout;
@@ -17,6 +17,18 @@ justify-content: center;
 `;
 
 class DashboardPage extends React.Component {
+  state = { visible: false };
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
   render() {
     return (
       <Layout className="layout" style={{ minHeight: "100vh" }}>
@@ -28,7 +40,15 @@ class DashboardPage extends React.Component {
           }}
           width="250"
         >
-          <UserInfoCard />
+          <UserInfoCard onClick={this.showModal} />
+          <Modal
+            title="ข้อมูลส่วนตัว"
+            visible={this.state.visible}
+            footer={null}
+            onCancel={this.handleCancel}
+          >
+            <UserInfo />
+          </Modal>
           <MenuInSider />
           <WrappedDiv>
             <Link to="/">
@@ -38,13 +58,13 @@ class DashboardPage extends React.Component {
             </Link>
           </WrappedDiv>
         </Sider>
-        <Layout style={{ height: "100%" }}>
-          <Content style={{ margin: "24px 16px" }}>
+        <Layout style={{ minHeight: "100vh" }}>
+          <Content style={{ margin: "24px 16px", height: "100%" }}>
             <div
               style={{
                 padding: 24,
                 background: "#fff",
-                minHeight: 360
+                minHeight: "100%"
               }}
             >
               <MenuRoutes />

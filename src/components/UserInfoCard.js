@@ -19,11 +19,11 @@ const Card = styled.div`
   padding: 10px 20px;
 `;
 
-const UserInfoCard = ({ firstName, lastName }) => {
+const UserInfoCard = ({ firstName, lastName, onClick }) => {
   return (
     <Container>
-      <Card>
-        <h1 style={{ color: "white" }}>User Info</h1>
+      <Card onClick={onClick}>
+        <h1 style={{ color: "white" }}>ข้อมูลส่วนตัว</h1>
         <p>ชื่อ: {firstName}</p>
         <p>นามสกุล: {lastName}</p>
       </Card>

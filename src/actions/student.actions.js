@@ -1,9 +1,10 @@
 import { studentService } from "../services";
-import { gradeConstants } from "../constants";
+import { studentConstants, userConstants } from "../constants";
 import { alertActions } from "./";
 
 export const studentActions = {
-  getGrade
+  getGrade,
+  getInfo
 };
 
 function getGrade(id) {
@@ -23,12 +24,38 @@ function getGrade(id) {
   };
 
   function request(id) {
-    return { type: gradeConstants.GRADE_REQUEST, id };
+    return { type: studentConstants.GRADE_REQUEST, id };
   }
   function success(grade) {
-    return { type: gradeConstants.GRADE_SUCCESS, grade };
+    return { type: studentConstants.GRADE_SUCCESS, grade };
   }
   function failure(error) {
-    return { type: gradeConstants.GRADE_FAILURE, error };
+    return { type: studentConstants.GRADE_FAILURE, error };
+  }
+}
+
+function getInfo(id) {
+  return dispatch => {
+    dispatch(request(id));
+
+    studentService.getInfo(id).then(
+      info => {
+        dispatch(success(info));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive info"));
+      }
+    );
+  };
+  function request(id) {
+    return { type: userConstants.INFO_REQUEST, id };
+  }
+  function success(info) {
+    return { type: userConstants.INFO_SUCCESS, info };
+  }
+  function failure(error) {
+    return { type: userConstants.INFO_FAILURE, error };
   }
 }

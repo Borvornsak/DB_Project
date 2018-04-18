@@ -1,4 +1,4 @@
-export const gradeConstants = {
+export const studentConstants = {
   GRADE_REQUEST: "STUDENT_GRADE_REQUEST",
   GRADE_SUCCESS: "STUDENT_GRADE_SUCCESS",
   GRADE_FAILURE: "STUDENT_GRADE_FAILURE"

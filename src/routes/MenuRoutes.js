@@ -16,7 +16,6 @@ const MenuRoutes = () => {
   return (
     <Router history={history}>
       <Switch>
-        {/* <Route exact path="/dashboard/register" component={RegisterBoard} /> */}
         <Route path="/dashboard/register" component={RegisterBoard} />
         <Route path="/dashboard/configure" component={ConfigureBoard} />
         <Route path="/dashboard/grade" component={GradeBoard} />
