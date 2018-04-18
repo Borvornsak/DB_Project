@@ -9,8 +9,8 @@ const { Content, Sider } = Layout;
 
 const WrappedDiv = styled.div`
 width: 100%;
-position: absolute;
-bottom: 2vh;
+// position: absolute;
+margin: 2vh 0 1vh;
 display: flex,
 alig-items: center;
 justify-content: center;
@@ -19,7 +19,7 @@ justify-content: center;
 class DashboardPage extends React.Component {
   render() {
     return (
-      <Layout className="layout" style={{ height: "100vh" }}>
+      <Layout className="layout" style={{ minHeight: "100vh" }}>
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -38,7 +38,7 @@ class DashboardPage extends React.Component {
             </Link>
           </WrappedDiv>
         </Sider>
-        <Layout>
+        <Layout style={{ height: "100%" }}>
           <Content style={{ margin: "24px 16px" }}>
             <div
               style={{

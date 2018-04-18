@@ -8,7 +8,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   //   position: absolute;
-  margin: 2vh 0px 0px;
+  margin: 2vh 0px 0;
 `;
 
 const Card = styled.div`
