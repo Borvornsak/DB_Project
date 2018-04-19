@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { studentActions } from "../actions";
+
+const Pre = styled.p`
+  white-space: pre;
+`;
 
 class Userinfo extends React.Component {
   constructor(props) {
@@ -16,37 +21,57 @@ class Userinfo extends React.Component {
       <div>
         {info && (
           <div>
-            <p>
+            <Pre>
               <b>รหัสประจำตัว: </b>
               {info.id}
-            </p>
-            <p>
+              {"\t"}
               <b>หมายเลขบัตรประชาชน: </b>
               {info.ssn}
-            </p>
-            <p>
+            </Pre>
+            <Pre>
               <b>ชื่อ: </b>
               {info.firstName}
-            </p>
-            <p>
+              {"\t\t\t\t"}
               <b>นามสกุล: </b>
               {info.lastName}
-            </p>
-            <p>
+            </Pre>
+            <Pre>
               <b>เบอร์โทรศัพท์: </b>
               {info.tel}
-            </p>
-            <p>
+              {"\t"}
               <b>อีเมล์: </b>
               {info.email}
-            </p>
+            </Pre>
             {info.address && (
-              <p>
-                <b>ที่อยู่: </b>
-                บ้านเลขที่ {info.address.houseNo} ถนน {info.address.road} แขวง{" "}
-                {info.address.subDistrict} เขต {info.address.district} จังหวัด{" "}
-                {info.address.province} รหัสไปรษณีย์ {info.address.zipCode}
-              </p>
+              <div>
+                <p>
+                  <b>ที่อยู่: </b>
+                </p>
+                <div style={{ textIndent: "20px" }}>
+                  <Pre>
+                    <b>บ้านเลขที่: </b>
+                    {info.address.houseNo}
+                    {"\t\t"}
+                    <b>ถนน: </b>
+                    {info.address.road}
+                    {"\t\t"}
+                    <b>แขวง: </b>
+                    {info.address.subDistrict}
+                  </Pre>
+                  <Pre>
+                    <b>เขต: </b>
+                    {info.address.district}
+                    {"\t\t"}
+                    <b>จังหวัด: </b>
+                    {info.address.province}
+                    {"\t"}
+                    <b>รหัสไปรษณีย์: </b>
+                    {info.address.zipCode}
+                  </Pre>
+                  <p />
+                  <p />
+                </div>
+              </div>
             )}
 
             {userType === "Student" && (
