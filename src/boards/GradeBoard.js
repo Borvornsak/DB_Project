@@ -13,7 +13,11 @@ class GradeBoard extends React.Component {
   title = semester => {
     const termName = ["", "ภาคการศึกษาต้น", "ภาคการศึกษาปลาย", "ภาคฤดูร้อน"];
     let [year, term] = semester.split("/");
-    return () => <h1>{`${termName[parseInt(term, 4)]} ปีการศึกษา ${year}`}</h1>;
+    return () => (
+      <h1 style={{ whiteSpace: "pre" }}>{`${
+        termName[parseInt(term, 4)]
+      }         ปีการศึกษา ${year}`}</h1>
+    );
   };
   render() {
     const { grade } = this.props;
