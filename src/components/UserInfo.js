@@ -54,7 +54,7 @@ class Userinfo extends React.Component {
                     {"\t\t"}
                     <b>ถนน: </b>
                     {info.address.road}
-                    {"\t\t"}
+                    {"\t\t\t"}
                     <b>แขวง: </b>
                     {info.address.subDistrict}
                   </Pre>
@@ -64,7 +64,7 @@ class Userinfo extends React.Component {
                     {"\t\t"}
                     <b>จังหวัด: </b>
                     {info.address.province}
-                    {"\t"}
+                    {"\t\t"}
                     <b>รหัสไปรษณีย์: </b>
                     {info.address.zipCode}
                   </Pre>
