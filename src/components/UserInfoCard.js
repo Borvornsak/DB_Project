@@ -17,6 +17,7 @@ const Card = styled.div`
   color: white;
   width: 90%;
   padding: 10px 20px;
+  cursor: pointer;
 `;
 
 const UserInfoCard = ({ firstName, lastName, onClick }) => {

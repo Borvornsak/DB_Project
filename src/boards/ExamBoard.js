@@ -1,7 +1,7 @@
 import React from "react";
 
 const ExamBoard = () => {
-  return <div>ยื่นคำร้องขอใบ Transcript</div>;
+  return <div>ตรวจสอบห้องสอบ</div>;
 };
 
 export default ExamBoard;

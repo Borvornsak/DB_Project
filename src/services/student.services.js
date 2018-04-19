@@ -3,7 +3,7 @@ export const studentService = {
   getInfo
 };
 
-const apiPath = "http://localhost:7555/user/student";
+const apiPath = "http://localhost:7555/student";
 
 function getGrade(id) {
   const requestOptions = {
