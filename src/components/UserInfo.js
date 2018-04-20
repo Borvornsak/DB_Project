@@ -16,7 +16,6 @@ class Userinfo extends React.Component {
 
   render() {
     const { info, userType } = this.props;
-    console.log(info);
     return (
       <div>
         {info && (

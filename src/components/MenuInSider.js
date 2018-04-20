@@ -12,12 +12,12 @@ class MenuInSider extends React.Component {
       "",
       "/register",
       "/configure",
+      "/course",
       "/grade",
       "/transcript",
       "/graduate",
       "/fee",
-      "/timetable",
-      "/exam"
+      "/timetable"
     ];
     let path = head + features[parseInt(e.key, features.length)];
     history.push(path);
@@ -52,7 +52,8 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="3">ตรวจสอบผลการศึกษา</Menu.Item>
+              <Menu.Item key="3">ตรวจสอบตารางเรียน</Menu.Item>
+              <Menu.Item key="4">ตรวจสอบผลการศึกษา</Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub3"
@@ -62,9 +63,9 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="4">ยื่นคำร้องขอใบ Transcript</Menu.Item>
-              <Menu.Item key="5">ยื่นคำร้องขอจบการศึกษา</Menu.Item>
-              <Menu.Item key="6">พิมพ์ใบชำระค่าเล่าเรียน</Menu.Item>
+              <Menu.Item key="5">ยื่นคำร้องขอใบ Transcript</Menu.Item>
+              <Menu.Item key="6">ยื่นคำร้องขอจบการศึกษา</Menu.Item>
+              <Menu.Item key="7">พิมพ์ใบชำระค่าเล่าเรียน</Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"
@@ -74,8 +75,7 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="7">ตรวจสอบตารางเรียน</Menu.Item>
-              <Menu.Item key="8">ตรวจสอบห้องสอบ</Menu.Item>
+              <Menu.Item key="8">ตรวจสอบวิชาเรียน</Menu.Item>
             </SubMenu>
           </Menu>
         )}

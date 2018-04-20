@@ -4,7 +4,8 @@ import { alertActions } from "./";
 
 export const studentActions = {
   getGrade,
-  getInfo
+  getInfo,
+  getAvailCourse
 };
 
 function getGrade(id) {
@@ -57,5 +58,31 @@ function getInfo(id) {
   }
   function failure(error) {
     return { type: userConstants.INFO_FAILURE, error };
+  }
+}
+
+function getAvailCourse(year, semester) {
+  return dispatch => {
+    dispatch(request(year, semester));
+
+    studentService.getAvailCourse(year, semester).then(
+      course => {
+        dispatch(success(course));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive avalible course"));
+      }
+    );
+  };
+  function request(year, semester) {
+    return { type: studentConstants.COURSE_REQUEST, year, semester };
+  }
+  function success(course) {
+    return { type: studentConstants.COURSE_SUCCESS, course };
+  }
+  function failure(error) {
+    return { type: studentConstants.COURSE_FAILURE, error };
   }
 }

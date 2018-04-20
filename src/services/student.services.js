@@ -1,6 +1,7 @@
 export const studentService = {
   getGrade,
-  getInfo
+  getInfo,
+  getAvailCourse
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -23,6 +24,19 @@ function getInfo(id) {
     method: "GET"
   };
   const url = `${apiPath}/${id}/info`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function getAvailCourse(year, semester) {
+  const requestOptions = {
+    method: "GET"
+  };
+  const url = `${apiPath}/getAvailCourse/${year}/${semester}`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);

@@ -5,4 +5,4 @@ export { default as TranscriptBoard } from "./TranscriptBoard";
 export { default as GraduateBoard } from "./GraduateBoard";
 export { default as FeeBoard } from "./FeeBoard";
 export { default as TimeTableBoard } from "./TimeTableBoard";
-export { default as ExamBoard } from "./ExamBoard";
+export { default as CourseBoard } from "./CourseBoard";
