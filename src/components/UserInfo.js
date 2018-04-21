@@ -10,8 +10,8 @@ const Pre = styled.p`
 class Userinfo extends React.Component {
   constructor(props) {
     super(props);
-    const { dispatch, id } = this.props;
-    dispatch(studentActions.getInfo(id));
+    const { dispatch, id, userType } = this.props;
+    if (userType === "Student") dispatch(studentActions.getInfo(id));
   }
 
   render() {

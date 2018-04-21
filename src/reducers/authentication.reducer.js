@@ -5,10 +5,12 @@ import { userConstants } from "../constants";
 
 const initialState = {
   loggedIn: true,
-  firstName: "นนทวี",
-  id: "teacher",
-  lastName: "สายปัญญา",
-  userType: "Teacher"
+  // firstName: "นนทวี",
+  // id: "teacher",
+  // lastName: "สายปัญญา",
+  // userType: "Teacher"
+  id: "student",
+  userType: "Student"
 };
 
 export function authentication(state = initialState, action) {

@@ -1,15 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from "antd";
-import { studentActions } from "../actions";
 
 class GradeBoard extends React.Component {
-  constructor(props) {
-    super(props);
-    const { dispatch, id } = this.props;
-    dispatch(studentActions.getGrade(id));
-  }
-
   title = semester => {
     const termName = ["", "ภาคการศึกษาต้น", "ภาคการศึกษาปลาย", "ภาคฤดูร้อน"];
     let [year, term] = semester.split("/");
@@ -101,8 +94,7 @@ const statColumns = [
 
 const mapStateToProps = state => {
   const { grade } = state;
-  const { id } = state.authentication;
-  return { grade, id };
+  return { grade };
 };
 
 export default connect(mapStateToProps)(GradeBoard);
