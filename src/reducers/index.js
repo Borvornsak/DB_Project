@@ -5,13 +5,15 @@ import { alert } from "./alert.reducer";
 import { grade } from "./grade.reducer";
 import { info } from "./info.reducer";
 import { course } from "./course.reducer";
+import { section } from "./section.reducer";
 
 const rootReducer = combineReducers({
   authentication,
   alert,
   grade,
   info,
-  course
+  course,
+  section
 });
 
 export default rootReducer;

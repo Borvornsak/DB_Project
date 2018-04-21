@@ -5,7 +5,8 @@ import { alertActions } from "./";
 export const studentActions = {
   getGrade,
   getInfo,
-  getAvailCourse
+  getAvailCourse,
+  getCourseSection
 };
 
 function getGrade(id) {
@@ -84,5 +85,36 @@ function getAvailCourse(year, semester) {
   }
   function failure(error) {
     return { type: studentConstants.COURSE_FAILURE, error };
+  }
+}
+
+function getCourseSection(courseId, year, semester) {
+  return dispatch => {
+    dispatch(request(courseId, year, semester));
+
+    studentService.getCourseSection(courseId, year, semester).then(
+      section => {
+        dispatch(success(section));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive section"));
+      }
+    );
+  };
+  function request(courseId, year, semester) {
+    return {
+      type: studentConstants.SECTION_REQUEST,
+      courseId,
+      year,
+      semester
+    };
+  }
+  function success(section) {
+    return { type: studentConstants.SECTION_SUCCESS, section };
+  }
+  function failure(error) {
+    return { type: studentConstants.SECTION_FAILURE, error };
   }
 }

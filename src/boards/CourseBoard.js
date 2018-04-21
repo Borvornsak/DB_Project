@@ -1,14 +1,16 @@
 import React from "react";
-import { Select, Button, Table } from "antd";
+import { Select, Button, Table, Modal } from "antd";
 import { connect } from "react-redux";
 import { studentActions } from "../actions";
 import { studentConstants } from "../constants";
+import { SectionInfo } from "../components";
+
 const Option = Select.Option;
 
 class CourseBoard extends React.Component {
   constructor() {
     super();
-    this.state = { year: "2017", semester: "1" };
+    this.state = { year: "2017", semester: "1", courseName: "" };
   }
 
   componentWillUnmount() {
@@ -28,8 +30,31 @@ class CourseBoard extends React.Component {
     dispatch(studentActions.getAvailCourse(year, semester));
   };
 
+  showModal = (courseId, courseName) => {
+    this.setState({
+      courseName,
+      visible: true
+    });
+    const { dispatch } = this.props;
+    dispatch(
+      studentActions.getCourseSection(
+        courseId,
+        this.state.year,
+        this.state.semester
+      )
+    );
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
   render() {
     const { course } = this.props;
+
     return (
       <div>
         <Select
@@ -54,7 +79,29 @@ class CourseBoard extends React.Component {
           Search
         </Button>
         {course.courseList && (
-          <Table columns={courseColumn} dataSource={course.courseList} />
+          <div>
+            <Table
+              columns={courseColumn}
+              dataSource={course.courseList}
+              onRowClick={record => {
+                return {
+                  onClick: this.showModal(record.courseId, record.courseName)
+                };
+              }}
+            />
+            <Modal
+              title={this.state.courseName}
+              visible={this.state.visible}
+              footer={null}
+              onCancel={this.handleCancel}
+            >
+              <SectionInfo
+                courseId={this.state.courseId}
+                year={this.state.year}
+                semester={this.state.semester}
+              />
+            </Modal>
+          </div>
         )}
       </div>
     );

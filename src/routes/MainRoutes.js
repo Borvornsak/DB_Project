@@ -13,11 +13,11 @@ class MainRoutes extends React.Component {
     // this line is required to work on plunker because the app preview runs on a subfolder url
     // history.push("/");
 
-    // const { dispatch } = this.props;
-    // history.listen((location, action) => {
-    //   // clear alert on location change
-    //   dispatch(alertActions.clear());
-    // });
+    const { dispatch } = this.props;
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
+    });
   }
   render() {
     return (
