@@ -12,12 +12,12 @@ class MenuInSider extends React.Component {
       "",
       "/register",
       "/configure",
-      "/course",
+      "/timetable",
       "/grade",
       "/transcript",
       "/graduate",
       "/fee",
-      "/timetable"
+      "/course"
     ];
     let path = head + features[parseInt(e.key, features.length)];
     history.push(path);
