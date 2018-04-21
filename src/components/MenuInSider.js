@@ -2,7 +2,7 @@ import React from "react";
 import { Menu, Icon } from "antd";
 import { connect } from "react-redux";
 import { history } from "../helpers";
-import { studentActions } from "../actions";
+import { studentActions, teacherActions } from "../actions";
 
 const { SubMenu } = Menu;
 
@@ -45,12 +45,25 @@ class MenuInSider extends React.Component {
     }
   };
 
+  teacherDispatchByKey = key => {
+    const { dispatch, state } = this.props;
+    switch (key) {
+      case "1":
+        break;
+      case "2":
+        dispatch(teacherActions.getAdvisee(state.authentication.id));
+        break;
+      default:
+    }
+  };
+
   handleSelected = features => e => {
     const { userType } = this.props.state.authentication;
     const head = "/dashboard";
     let path = head + features[parseInt(e.key, features.length)];
     history.push(path);
     if (userType === "Student") this.studentDispatchByKey(e.key);
+    else if (userType === "Teacher") this.teacherDispatchByKey(e.key);
   };
   render() {
     const { userType } = this.props;

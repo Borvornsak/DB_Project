@@ -4,12 +4,6 @@ import { Table } from "antd";
 import { teacherActions } from "../actions";
 
 class AdviseeBoard extends React.Component {
-  constructor(props) {
-    super(props);
-    const { dispatch, id } = this.props;
-    dispatch(teacherActions.getAdvisee(id));
-  }
-
   render() {
     const { advisee } = this.props;
     return <Table columns={columns} dataSource={advisee.adviseeList} />;
