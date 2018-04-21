@@ -9,7 +9,8 @@ import {
   GraduateBoard,
   FeeBoard,
   TimeTableBoard,
-  CourseBoard
+  CourseBoard,
+  AdviseeBoard
 } from "../boards";
 
 const MenuRoutes = () => {
@@ -24,6 +25,7 @@ const MenuRoutes = () => {
         <Route path="/dashboard/fee" component={FeeBoard} />
         <Route path="/dashboard/timetable" component={TimeTableBoard} />
         <Route path="/dashboard/course" component={CourseBoard} />
+        <Route path="/dashboard/advisee" component={AdviseeBoard} />
       </Switch>
     </Router>
   );

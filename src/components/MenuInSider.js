@@ -5,20 +5,23 @@ import { history } from "../helpers";
 
 const { SubMenu } = Menu;
 
+const studentFeatures = [
+  "",
+  "/register",
+  "/configure",
+  "/timetable",
+  "/grade",
+  "/transcript",
+  "/graduate",
+  "/fee",
+  "/course"
+];
+
+const teacherFeatures = ["", "/studentScore", "/advisee"];
+
 class MenuInSider extends React.Component {
-  handleStudentSelected = e => {
+  handleSelected = features => e => {
     const head = "/dashboard";
-    const features = [
-      "",
-      "/register",
-      "/configure",
-      "/timetable",
-      "/grade",
-      "/transcript",
-      "/graduate",
-      "/fee",
-      "/course"
-    ];
     let path = head + features[parseInt(e.key, features.length)];
     history.push(path);
   };
@@ -31,7 +34,7 @@ class MenuInSider extends React.Component {
             theme="dark"
             mode="inline"
             defaultOpenKeys={["sub1", "sub2", "sub3", "sub4"]}
-            onSelect={this.handleStudentSelected}
+            onSelect={this.handleSelected(studentFeatures)}
           >
             <SubMenu
               key="sub1"
@@ -86,6 +89,7 @@ class MenuInSider extends React.Component {
             mode="inline"
             defaultOpenKeys={["sub1"]}
             style={{ margin: "50px 0" }}
+            onSelect={this.handleSelected(teacherFeatures)}
           >
             <SubMenu
               key="sub1"
