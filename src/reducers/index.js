@@ -7,7 +7,7 @@ import { info } from "./info.reducer";
 import { course } from "./course.reducer";
 import { section } from "./section.reducer";
 import { advisee } from "./advisee.reducer";
-
+import { register } from "./register.reducer";
 const rootReducer = combineReducers({
   authentication,
   alert,
@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
   info,
   course,
   section,
-  advisee
+  advisee,
+  register
 });
 
 export default rootReducer;

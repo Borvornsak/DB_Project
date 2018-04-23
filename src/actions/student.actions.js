@@ -6,7 +6,8 @@ export const studentActions = {
   getGrade,
   getInfo,
   getAvailCourse,
-  getCourseSection
+  getCourseSection,
+  registerCourse
 };
 
 function getGrade(id) {
@@ -113,6 +114,39 @@ function getCourseSection(courseId, year, semester) {
   }
   function success(section) {
     return { type: studentConstants.SECTION_SUCCESS, section };
+  }
+  function failure(error) {
+    return { type: studentConstants.SECTION_FAILURE, error };
+  }
+}
+
+function registerCourse(id, courseId, section, semester, year) {
+  return dispatch => {
+    dispatch(request(id, courseId, section, semester, year));
+
+    studentService.registerCourse(id, courseId, section, semester, year).then(
+      registeredCourse => {
+        dispatch(success(registeredCourse));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't register the course"));
+      }
+    );
+  };
+  function request(id, courseId, section, semester, year) {
+    return {
+      type: studentConstants.SECTION_REQUEST,
+      id,
+      courseId,
+      section,
+      semester,
+      year
+    };
+  }
+  function success(registeredCourse) {
+    return { type: studentConstants.SECTION_SUCCESS, registeredCourse };
   }
   function failure(error) {
     return { type: studentConstants.SECTION_FAILURE, error };
