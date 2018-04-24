@@ -3,13 +3,13 @@ export const studentService = {
   getInfo,
   getAvailCourse,
   getCourseSection,
-  registerCourse
+  getRegisterResult
 };
 
 const apiPath = "http://localhost:7555/student";
 
-const delay = time => result =>
-  new Promise(resolve => setTimeout(() => resolve(result), time));
+// const delay = time => result =>
+//   new Promise(resolve => setTimeout(() => resolve(result), time));
 
 function getGrade(id) {
   const requestOptions = {
@@ -63,29 +63,15 @@ function getCourseSection(courseId, year, semester) {
   });
 }
 
-function registerCourse(id, courseId, section, semester, year) {
+function getRegisterResult(id) {
   const requestOptions = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      id,
-      courseId,
-      section,
-      semester,
-      year
-    })
+    method: "GET"
   };
-
-  const url = `${apiPath}/register`;
-  return fetch(url, requestOptions)
-    .then(delay(1000))
-    .then(response => {
-      if (!response.ok) {
-        return Promise.reject(response.statusText);
-      }
-      return response.json();
-    });
+  const url = `${apiPath}/${id}/getRegisterResult`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
 }

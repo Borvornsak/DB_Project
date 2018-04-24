@@ -1,5 +1,6 @@
 import React from "react";
-import { Table, Input, Popconfirm } from "antd";
+import { Table, Input, Button } from "antd";
+import { connect } from "react-redux";
 
 const data = [];
 for (let i = 0; i < 10; i++) {
@@ -43,43 +44,17 @@ class RegisterBoard extends React.Component {
         render: (text, record) => this.renderColumns(text, record, "section")
       },
       {
-        title: "operation",
-        dataIndex: "operation",
-        width: "25%",
-        render: (text, record) => {
-          const { editable } = record;
-          return (
-            <div>
-              {editable ? (
-                <span>
-                  <a
-                    style={{ marginRight: "8px" }}
-                    onClick={() => this.save(record.key)}
-                  >
-                    Save
-                  </a>
-                  <Popconfirm
-                    title="Sure to cancel?"
-                    onConfirm={() => this.cancel(record.key)}
-                  >
-                    <a>Cancel</a>
-                  </Popconfirm>
-                </span>
-              ) : (
-                <a onClick={() => this.edit(record.key)}>Edit</a>
-              )}
-            </div>
-          );
-        }
-      },
-      {
         title: "Status",
         dataIndex: "status",
         width: "15%"
       }
     ];
-    this.state = { data };
-    this.cacheData = data.map(item => ({ ...item }));
+    const { registerResultList } = this.props.registerResult;
+    registerResultList ? console.log("register") : console.log("data");
+    this.state = registerResultList ? { registerResultList } : { data };
+    this.cacheData = registerResultList
+      ? registerResultList.map(item => ({ ...item }))
+      : data.map(item => ({ ...item }));
   }
   renderColumns(text, record, column) {
     return (
@@ -98,44 +73,66 @@ class RegisterBoard extends React.Component {
       this.setState({ data: newData });
     }
   }
-  edit(key) {
+  delete = key => {
     const newData = [...this.state.data];
-    const target = newData.filter(item => key === item.key)[0];
-    if (target) {
-      target.editable = true;
-      this.setState({ data: newData });
+    this.setState({ data: newData.filter(item => item.key !== key) });
+  };
+  handleButtonSubmit = () => {
+    // for (let i = 0; i < 10; i++) {}
+    console.log(this.state.data);
+  };
+  handleButtonReset = () => {
+    const { registerResultList } = this.props.registerResult;
+    const data = [];
+    for (let i = 0; i < 10; i++) {
+      data.push({
+        key: i.toString(),
+        courseId: " ",
+        section: " ",
+        editable: true,
+        status: ""
+      });
     }
-  }
-  save(key) {
-    const newData = [...this.state.data];
-    const target = newData.filter(item => key === item.key)[0];
-    if (target) {
-      delete target.editable;
-      this.setState({ data: newData });
-      this.cacheData = newData.map(item => ({ ...item }));
-    }
-  }
-  cancel(key) {
-    const newData = [...this.state.data];
-    const target = newData.filter(item => key === item.key)[0];
-    if (target) {
-      Object.assign(target, this.cacheData.filter(item => key === item.key)[0]);
-      delete target.editable;
-      this.setState({ data: newData });
-    }
-  }
+    this.setState({ data: registerResultList ? registerResultList : data });
+  };
   render() {
     return (
       <div>
-        <Table
-          bordered
-          dataSource={this.state.data}
-          columns={this.columns}
-          pagination={false}
-        />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Table
+            bordered
+            dataSource={this.state.data}
+            columns={this.columns}
+            pagination={false}
+            style={{ width: "80%" }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "20px 20px"
+          }}
+        >
+          <Button
+            type="primary"
+            onClick={this.handleButtonSubmit}
+            style={{ margin: "0px 30px" }}
+          >
+            Register
+          </Button>
+          <Button type="danger" onClick={this.handleButtonReset}>
+            Reset
+          </Button>
+        </div>
       </div>
     );
   }
 }
 
-export default RegisterBoard;
+const mapStateToProps = state => {
+  const { registerResult } = state;
+  return { registerResult };
+};
+
+export default connect(mapStateToProps)(RegisterBoard);
