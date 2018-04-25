@@ -12,11 +12,11 @@ function manageRegisterPeriod(option) {
 
     officerService.manageRegisterPeriod(option).then(
       response => {
-        console.log(response);
-        dispatch(success(response));
+        dispatch(success(option));
         dispatch(alertActions.clear());
       },
       error => {
+        console.log(error);
         dispatch(failure(error));
         dispatch(alertActions.error("Can't change register period"));
       }
@@ -28,8 +28,8 @@ function manageRegisterPeriod(option) {
       option
     };
   }
-  function success(response) {
-    return { type: officerConstants.MANAGE_REAGISTER_PERIOD_SUCCESS, response };
+  function success(option) {
+    return { type: officerConstants.MANAGE_REAGISTER_PERIOD_SUCCESS, option };
   }
   function failure(error) {
     return { type: officerConstants.MANAGE_REAGISTER_PERIOD_FAILURE, error };

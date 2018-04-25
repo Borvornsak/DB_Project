@@ -10,7 +10,7 @@ export function registerPeriod(state = initialState, action) {
         option: action.option
       };
     case officerConstants.MANAGE_REAGISTER_PERIOD_SUCCESS:
-      return {};
+      return { option: action.option };
     case officerConstants.MANAGE_REAGISTER_PERIOD_FAILURE:
       return {};
     default:

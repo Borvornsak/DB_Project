@@ -18,6 +18,6 @@ function manageRegisterPeriod(option) {
     if (!response.ok) {
       return Promise.reject(response.statusText);
     }
-    return response.json();
+    return response;
   });
 }
