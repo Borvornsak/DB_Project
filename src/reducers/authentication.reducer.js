@@ -9,7 +9,9 @@ const initialState = {
   // id: "teacher",
   // lastName: "สายปัญญา",
   // userType: "Teacher"
+  firstName: "สมหญิง",
   id: "student",
+  lastName: "บุญมี",
   userType: "Student"
 };
 

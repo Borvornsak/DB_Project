@@ -7,7 +7,8 @@ export const studentActions = {
   getInfo,
   getAvailCourse,
   getCourseSection,
-  getRegisterResult
+  getRegisterResult,
+  registerCourse
 };
 
 function getGrade(id) {
@@ -126,7 +127,6 @@ function getRegisterResult(id) {
 
     studentService.getRegisterResult(id).then(
       registerResult => {
-        console.log(registerResult);
         dispatch(success(registerResult));
         dispatch(alertActions.clear());
       },
@@ -138,14 +138,48 @@ function getRegisterResult(id) {
   };
   function request(id) {
     return {
-      type: studentConstants.SECTION_REQUEST,
+      type: studentConstants.GET_REGISTER_COURSE_REQUEST,
       id
     };
   }
-  function success(registerResult) {
-    return { type: studentConstants.SECTION_SUCCESS, registerResult };
+  function success(register) {
+    return { type: studentConstants.GET_REGISTER_COURSE_SUCCESS, register };
   }
   function failure(error) {
-    return { type: studentConstants.SECTION_FAILURE, error };
+    return { type: studentConstants.GET_REGISTER_COURSE_FAILURE, error };
+  }
+}
+
+function registerCourse(id, courseList) {
+  return dispatch => {
+    dispatch(request(id, courseList));
+
+    studentService.registerCourse(id, courseList).then(
+      registerResult => {
+        console.log("regis", registerResult);
+        if (registerResult.success) {
+          dispatch(success(registerResult));
+          dispatch(alertActions.clear());
+        } else {
+          dispatch(failure(registerResult));
+        }
+      },
+      error => {
+        dispatch(alertActions.error("register FAIL!!!"));
+      }
+    );
+  };
+  function request(id, courseList) {
+    return {
+      type: studentConstants.REGISTER_COURSE_REQUEST,
+      id,
+      courseList
+    };
+  }
+  function success(register) {
+    return { type: studentConstants.REGISTER_COURSE_SUCCESS, register };
+  }
+  function failure(error) {
+    return { type: studentConstants.REGISTER_COURSE_FAILURE, error };
   }
 }
