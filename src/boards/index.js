@@ -7,3 +7,4 @@ export { default as FeeBoard } from "./FeeBoard";
 export { default as TimeTableBoard } from "./TimeTableBoard";
 export { default as CourseBoard } from "./CourseBoard";
 export { default as AdviseeBoard } from "./AdviseeBoard";
+export { default as RegisterPeriodBoard } from "./RegisterPeriodBoard";

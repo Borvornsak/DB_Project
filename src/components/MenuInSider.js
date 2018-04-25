@@ -20,6 +20,8 @@ const studentFeatures = [
 
 const teacherFeatures = ["", "/studentScore", "/advisee"];
 
+const officerFeatures = ["", "/request", "/registerPeriod"];
+
 class MenuInSider extends React.Component {
   studentDispatchByKey = key => {
     const { dispatch, state } = this.props;
@@ -64,6 +66,16 @@ class MenuInSider extends React.Component {
     }
   };
 
+  officerDispatchByKey = key => {
+    switch (key) {
+      case "1":
+        break;
+      case "2":
+        break;
+      default:
+    }
+  };
+
   handleSelected = features => e => {
     const { userType } = this.props.state.authentication;
     const head = "/dashboard";
@@ -71,9 +83,10 @@ class MenuInSider extends React.Component {
     history.push(path);
     if (userType === "Student") this.studentDispatchByKey(e.key);
     else if (userType === "Teacher") this.teacherDispatchByKey(e.key);
+    else if (userType === "Officer") this.officerDispatchByKey(e.key);
   };
   render() {
-    const { userType } = this.props;
+    const { userType, registerPeriod } = this.props;
     return (
       <div>
         {userType === "Student" && (
@@ -91,8 +104,14 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="1">ลงทะเบียนเรียน</Menu.Item>
-              <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
+              <Menu.Item key="1">
+                {registerPeriod === "register"
+                  ? "ลงทะเบียนเรียน"
+                  : "ผลการลงทะเบียนเรียน"}
+              </Menu.Item>
+              {registerPeriod === "add/drop" && (
+                <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
+              )}
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -160,6 +179,7 @@ class MenuInSider extends React.Component {
             mode="inline"
             defaultOpenKeys={["sub1"]}
             style={{ margin: "50px 0" }}
+            onSelect={this.handleSelected(officerFeatures)}
           >
             <SubMenu
               key="sub1"
@@ -170,6 +190,7 @@ class MenuInSider extends React.Component {
               }
             >
               <Menu.Item key="1">รับคำร้องจากนิสิต</Menu.Item>
+              <Menu.Item key="2">ตั้งค่าการลงทะเบียนเรียน</Menu.Item>
             </SubMenu>
           </Menu>
         )}
@@ -179,8 +200,8 @@ class MenuInSider extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { userType } = state.authentication;
-  return { userType, state };
+  const { userType, registerPeriod } = state.authentication;
+  return { userType, state, registerPeriod };
 };
 
 export default connect(mapStateToProps)(MenuInSider);

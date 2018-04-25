@@ -10,7 +10,8 @@ import {
   FeeBoard,
   TimeTableBoard,
   CourseBoard,
-  AdviseeBoard
+  AdviseeBoard,
+  RegisterPeriodBoard
 } from "../boards";
 
 const MenuRoutes = () => {
@@ -26,6 +27,10 @@ const MenuRoutes = () => {
         <Route path="/dashboard/timetable" component={TimeTableBoard} />
         <Route path="/dashboard/course" component={CourseBoard} />
         <Route path="/dashboard/advisee" component={AdviseeBoard} />
+        <Route
+          path="/dashboard/registerPeriod"
+          component={RegisterPeriodBoard}
+        />
       </Switch>
     </Router>
   );

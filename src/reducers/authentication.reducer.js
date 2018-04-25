@@ -13,7 +13,10 @@ const initialState = {
   id: "student",
   lastName: "บุญมี",
   userType: "Student",
-  registerPeriod: "none"
+  // id: "officer",
+  // userType: "Officer",
+  // firstName: "Officer",
+  registerPeriod: "add/drop"
 };
 
 export function authentication(state = initialState, action) {
