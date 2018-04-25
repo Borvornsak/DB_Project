@@ -25,7 +25,13 @@ class MenuInSider extends React.Component {
     const { dispatch, state } = this.props;
     switch (key) {
       case "1":
-        dispatch(studentActions.getRegisterResult(state.authentication.id));
+        if (state.authentication.registerPeriod === "register") {
+          dispatch(
+            studentActions.getCoursePendingList(state.authentication.id)
+          );
+        } else {
+          dispatch(studentActions.getRegisterResult(state.authentication.id));
+        }
         break;
       case "2":
         break;

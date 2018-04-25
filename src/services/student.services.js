@@ -3,8 +3,9 @@ export const studentService = {
   getInfo,
   getAvailCourse,
   getCourseSection,
-  getRegisterResult,
-  registerCourse
+  getCoursePendingList,
+  registerCourse,
+  getRegisterResult
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -64,7 +65,7 @@ function getCourseSection(courseId, year, semester) {
   });
 }
 
-function getRegisterResult(id) {
+function getCoursePendingList(id) {
   const requestOptions = {
     method: "GET"
   };
@@ -90,6 +91,19 @@ function registerCourse(id, courseList) {
     })
   };
   const url = `${apiPath}/registerCourse`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function getRegisterResult(id) {
+  const requestOptions = {
+    method: "GET"
+  };
+  const url = `${apiPath}/${id}/getRegisterResult`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);

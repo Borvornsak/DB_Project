@@ -7,8 +7,9 @@ export const studentActions = {
   getInfo,
   getAvailCourse,
   getCourseSection,
-  getRegisterResult,
-  registerCourse
+  getCoursePendingList,
+  registerCourse,
+  getRegisterResult
 };
 
 function getGrade(id) {
@@ -121,11 +122,11 @@ function getCourseSection(courseId, year, semester) {
   }
 }
 
-function getRegisterResult(id) {
+function getCoursePendingList(id) {
   return dispatch => {
     dispatch(request(id));
 
-    studentService.getRegisterResult(id).then(
+    studentService.getCoursePendingList(id).then(
       registerResult => {
         dispatch(success(registerResult));
         dispatch(alertActions.clear());
@@ -181,5 +182,34 @@ function registerCourse(id, courseList) {
   }
   function failure(error) {
     return { type: studentConstants.REGISTER_COURSE_FAILURE, error };
+  }
+}
+
+function getRegisterResult(id) {
+  return dispatch => {
+    dispatch(request(id));
+
+    studentService.getRegisterResult(id).then(
+      registerResult => {
+        dispatch(success(registerResult));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive register course"));
+      }
+    );
+  };
+  function request(id) {
+    return {
+      type: studentConstants.GET_REGISTER_COURSE_REQUEST,
+      id
+    };
+  }
+  function success(register) {
+    return { type: studentConstants.GET_REGISTER_COURSE_SUCCESS, register };
+  }
+  function failure(error) {
+    return { type: studentConstants.GET_REGISTER_COURSE_FAILURE, error };
   }
 }

@@ -12,7 +12,8 @@ const initialState = {
   firstName: "สมหญิง",
   id: "student",
   lastName: "บุญมี",
-  userType: "Student"
+  userType: "Student",
+  registerPeriod: "none"
 };
 
 export function authentication(state = initialState, action) {
