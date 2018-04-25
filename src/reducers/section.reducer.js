@@ -12,9 +12,7 @@ export function section(state = initialState, action) {
         semester: action.semester
       };
     case studentConstants.SECTION_SUCCESS:
-      return {
-        sectionList: action.section
-      };
+      return action.section;
     case studentConstants.SECTION_FAILURE:
       return {};
     default:

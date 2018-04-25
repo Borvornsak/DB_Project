@@ -22,9 +22,19 @@ const courseColumn = [
     key: "sectionNumber"
   },
   {
-    title: "Max Enrollment",
-    dataIndex: "maxEnrollment",
-    key: "maxEnrollment"
+    title: "Teacher",
+    dataIndex: "Teacher",
+    key: "Teacher"
+  },
+  {
+    title: "Time",
+    dataIndex: "Time",
+    key: "Time"
+  },
+  {
+    title: "Enroll Number",
+    dataIndex: "enrollNumber",
+    key: "enrollNumber"
   }
 ];
 

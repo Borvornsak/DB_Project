@@ -53,7 +53,7 @@ class CourseBoard extends React.Component {
   };
 
   render() {
-    const { course } = this.props;
+    const { course, section } = this.props;
 
     return (
       <div>
@@ -132,8 +132,8 @@ const courseColumn = [
 ];
 
 const mapStateToProps = state => {
-  const { course } = state;
-  return { course };
+  const { course, section } = state;
+  return { course, section };
 };
 
 export default connect(mapStateToProps)(CourseBoard);
