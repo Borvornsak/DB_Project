@@ -1,16 +1,16 @@
-import React from "react";
-import { Select, Button, Table, Modal } from "antd";
-import { connect } from "react-redux";
-import { studentActions } from "../actions";
-import { studentConstants } from "../constants";
-import { SectionInfo } from "../components";
+import React from 'react';
+import { Select, Button, Table, Modal } from 'antd';
+import { connect } from 'react-redux';
+import { studentActions } from '../actions';
+import { studentConstants } from '../constants';
+import { SectionInfo } from '../components';
 
 const Option = Select.Option;
 
 class CourseBoard extends React.Component {
   constructor() {
     super();
-    this.state = { year: "2017", semester: "1", courseName: "" };
+    this.state = { year: '2018', semester: '1', courseName: '', courseId: '' };
   }
 
   componentWillUnmount() {
@@ -33,16 +33,11 @@ class CourseBoard extends React.Component {
   showModal = (courseId, courseName) => {
     this.setState({
       courseName,
+      courseId,
       visible: true
     });
     const { dispatch } = this.props;
-    dispatch(
-      studentActions.getCourseSection(
-        courseId,
-        this.state.year,
-        this.state.semester
-      )
-    );
+    dispatch(studentActions.getCourseSection(courseId, this.state.year, this.state.semester));
   };
 
   handleCancel = e => {
@@ -57,20 +52,13 @@ class CourseBoard extends React.Component {
 
     return (
       <div>
-        <Select
-          defaultValue="2017"
-          style={{ width: 120 }}
-          onChange={this.handleYearChange}
-        >
+        <Select defaultValue="2018" style={{ width: 120 }} onChange={this.handleYearChange}>
+          <Option value="2018">2018</Option>
           <Option value="2017">2017</Option>
           <Option value="2016">2016</Option>
           <Option value="2015">2015</Option>
         </Select>
-        <Select
-          defaultValue="1"
-          style={{ width: 120 }}
-          onChange={this.handleSemesterChange}
-        >
+        <Select defaultValue="1" style={{ width: 120 }} onChange={this.handleSemesterChange}>
           <Option value="1">1</Option>
           <Option value="2">2</Option>
           <Option value="3">3</Option>
@@ -90,16 +78,13 @@ class CourseBoard extends React.Component {
               }}
             />
             <Modal
-              title={this.state.courseName}
+              width="800px"
+              title={`${this.state.courseId} - ${this.state.courseName}`}
               visible={this.state.visible}
               footer={null}
               onCancel={this.handleCancel}
             >
-              <SectionInfo
-                courseId={this.state.courseId}
-                year={this.state.year}
-                semester={this.state.semester}
-              />
+              <SectionInfo courseId={this.state.courseId} year={this.state.year} semester={this.state.semester} />
             </Modal>
           </div>
         )}
@@ -110,24 +95,24 @@ class CourseBoard extends React.Component {
 
 const courseColumn = [
   {
-    title: "Course Id",
-    dataIndex: "courseId",
-    key: "courseId"
+    title: 'Course Id',
+    dataIndex: 'courseId',
+    key: 'courseId'
   },
   {
-    title: "Course Name",
-    dataIndex: "courseName",
-    key: "courseName"
+    title: 'Course Name',
+    dataIndex: 'courseName',
+    key: 'courseName'
   },
   {
-    title: "Short Name",
-    dataIndex: "shortName",
-    key: "shortName"
+    title: 'Short Name',
+    dataIndex: 'shortName',
+    key: 'shortName'
   },
   {
-    title: "Credit",
-    dataIndex: "credit",
-    key: "credit"
+    title: 'Credit',
+    dataIndex: 'credit',
+    key: 'credit'
   }
 ];
 
