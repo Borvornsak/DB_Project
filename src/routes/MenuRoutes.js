@@ -3,7 +3,7 @@ import { Switch, Route, Router } from "react-router-dom";
 import { history } from "../helpers";
 import {
   RegisterBoard,
-  ConfigureBoard,
+  AddDropWithdrawBoard,
   GradeBoard,
   TranscriptBoard,
   GraduateBoard,
@@ -19,7 +19,10 @@ const MenuRoutes = () => {
     <Router history={history}>
       <Switch>
         <Route path="/dashboard/register" component={RegisterBoard} />
-        <Route path="/dashboard/configure" component={ConfigureBoard} />
+        <Route
+          path="/dashboard/addDropWithdraw"
+          component={AddDropWithdrawBoard}
+        />
         <Route path="/dashboard/grade" component={GradeBoard} />
         <Route path="/dashboard/transcript" component={TranscriptBoard} />
         <Route path="/dashboard/graduate" component={GraduateBoard} />

@@ -1,5 +1,5 @@
 export { default as RegisterBoard } from "./RegisterBoard";
-export { default as ConfigureBoard } from "./ConfigureBoard";
+export { default as AddDropWithdrawBoard } from "./AddDropWithdrawBoard";
 export { default as GradeBoard } from "./GradeBoard";
 export { default as TranscriptBoard } from "./TranscriptBoard";
 export { default as GraduateBoard } from "./GraduateBoard";

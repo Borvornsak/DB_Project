@@ -9,7 +9,7 @@ const { SubMenu } = Menu;
 const studentFeatures = [
   "",
   "/register",
-  "/configure",
+  "/addDropWithdraw",
   "/timetable",
   "/grade",
   "/transcript",
