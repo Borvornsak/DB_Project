@@ -1,6 +1,6 @@
-#Database Project [Front-end]
+# Database Project [Front-end]
 
-##installation
+## installation
 ```
 	git clone https://github.com/Borvornsak/DB_Project.git
 	cd DB_Project
