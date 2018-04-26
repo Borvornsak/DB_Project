@@ -5,8 +5,7 @@ import {
   RegisterBoard,
   AddDropWithdrawBoard,
   GradeBoard,
-  TranscriptBoard,
-  GraduateBoard,
+  DocumentBoard,
   FeeBoard,
   TimeTableBoard,
   CourseBoard,
@@ -24,8 +23,7 @@ const MenuRoutes = () => {
           component={AddDropWithdrawBoard}
         />
         <Route path="/dashboard/grade" component={GradeBoard} />
-        <Route path="/dashboard/transcript" component={TranscriptBoard} />
-        <Route path="/dashboard/graduate" component={GraduateBoard} />
+        <Route path="/dashboard/document" component={DocumentBoard} />
         <Route path="/dashboard/fee" component={FeeBoard} />
         <Route path="/dashboard/timetable" component={TimeTableBoard} />
         <Route path="/dashboard/course" component={CourseBoard} />

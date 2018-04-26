@@ -12,8 +12,7 @@ const studentFeatures = [
   "/addDropWithdraw",
   "/timetable",
   "/grade",
-  "/transcript",
-  "/graduate",
+  "/document",
   "/fee",
   "/course"
 ];
@@ -47,8 +46,6 @@ class MenuInSider extends React.Component {
       case "6":
         break;
       case "7":
-        break;
-      case "8":
         break;
       default:
     }
@@ -132,9 +129,8 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="5">ยื่นคำร้องขอใบ Transcript</Menu.Item>
-              <Menu.Item key="6">ยื่นคำร้องขอจบการศึกษา</Menu.Item>
-              <Menu.Item key="7">พิมพ์ใบชำระค่าเล่าเรียน</Menu.Item>
+              <Menu.Item key="5">ยื่นคำร้องขอเอกสาร</Menu.Item>
+              <Menu.Item key="6">พิมพ์ใบชำระค่าเล่าเรียน</Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"
@@ -144,7 +140,7 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="8">ตรวจสอบวิชาเรียน</Menu.Item>
+              <Menu.Item key="7">ตรวจสอบวิชาเรียน</Menu.Item>
             </SubMenu>
           </Menu>
         )}

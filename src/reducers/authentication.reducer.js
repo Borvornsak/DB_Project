@@ -4,15 +4,15 @@ import { userConstants } from "../constants";
 // const initialState = user ? { loggedIn: true, user } : {};
 
 const initialState = {
-  loggedIn: true
+  loggedIn: true,
   // firstName: "นนทวี",
   // id: "teacher",
   // lastName: "สายปัญญา",
   // userType: "Teacher"
-  // firstName: "สมหญิง",
-  // id: "student",
-  // lastName: "บุญมี",
-  // userType: "Student",
+  firstName: "สมหญิง",
+  id: "student",
+  lastName: "บุญมี",
+  userType: "Student"
   // // id: "officer",
   // // userType: "Officer",
   // // firstName: "Officer",
