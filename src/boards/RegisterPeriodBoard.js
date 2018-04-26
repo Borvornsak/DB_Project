@@ -11,54 +11,77 @@ const H1 = styled.h1`
 class RegisterPeriodBoard extends React.Component {
   constructor(props) {
     super(props);
+    const { registrationStatus } = this.props;
     this.state = {
-      registerDisabled: false,
-      addDropDisabled: false,
-      withdrawDisabled: false
+      registerDisabled:
+        registrationStatus === "add/drop" || registrationStatus === "withdraw",
+      addDropDisabled:
+        registrationStatus === "register" || registrationStatus === "withdraw",
+      withdrawDisabled:
+        registrationStatus === "register" || registrationStatus === "add/drop",
+      registerCheck: registrationStatus === "register",
+      addDropCheck: registrationStatus === "add/drop",
+      withdrawCheck: registrationStatus === "withdraw"
     };
   }
 
-  noneSelected = () => {
-    this.setState({
-      registerDisabled: false,
-      addDropDisabled: false,
-      withdrawDisabled: false
-    });
+  noneSelected = {
+    registerDisabled: false,
+    addDropDisabled: false,
+    withdrawDisabled: false
   };
 
   registerSelected = checked => {
     const { dispatch } = this.props;
     if (checked) {
-      dispatch(officerActions.manageRegisterPeriod("open"));
+      dispatch(officerActions.manageRegisterPeriod("register"));
       this.setState({
         addDropDisabled: true,
-        withdrawDisabled: true
+        withdrawDisabled: true,
+        registerCheck: true
       });
     } else {
-      dispatch(officerActions.manageRegisterPeriod("close"));
-      this.noneSelected();
+      dispatch(officerActions.manageRegisterPeriod("none"));
+      this.setState({
+        ...this.noneSelected,
+        registerCheck: false
+      });
     }
   };
 
   addDropSelected = checked => {
+    const { dispatch } = this.props;
     if (checked) {
+      dispatch(officerActions.manageRegisterPeriod("add/drop"));
       this.setState({
         registerDisabled: true,
-        withdrawDisabled: true
+        withdrawDisabled: true,
+        addDropCheck: true
       });
     } else {
-      this.noneSelected();
+      dispatch(officerActions.manageRegisterPeriod("none"));
+      this.setState({
+        ...this.noneSelected,
+        addDropCheck: false
+      });
     }
   };
 
   withdrawSelected = checked => {
+    const { dispatch } = this.props;
     if (checked) {
+      dispatch(officerActions.manageRegisterPeriod("withdraw"));
       this.setState({
         registerDisabled: true,
-        addDropDisabled: true
+        addDropDisabled: true,
+        withdrawCheck: true
       });
     } else {
-      this.noneSelected();
+      dispatch(officerActions.manageRegisterPeriod("none"));
+      this.setState({
+        ...this.noneSelected,
+        withdrawCheck: false
+      });
     }
   };
 
@@ -75,16 +98,19 @@ class RegisterPeriodBoard extends React.Component {
       >
         <H1>Register : </H1>
         <Switch
+          checked={this.state.registerCheck}
           onChange={this.registerSelected}
           disabled={this.state.registerDisabled}
         />
         <H1>Add/Drop : </H1>
         <Switch
+          checked={this.state.addDropCheck}
           onChange={this.addDropSelected}
           disabled={this.state.addDropDisabled}
         />
         <H1>Withdraw : </H1>
         <Switch
+          checked={this.state.withdrawCheck}
           onChange={this.withdrawSelected}
           disabled={this.state.withdrawDisabled}
         />
@@ -93,8 +119,9 @@ class RegisterPeriodBoard extends React.Component {
   }
 }
 const mapStateToProps = state => {
+  const { registrationStatus } = state.authentication;
   const { registerPeriod } = state;
-  return { registerPeriod };
+  return { registerPeriod, registrationStatus };
 };
 
 export default connect(mapStateToProps)(RegisterPeriodBoard);

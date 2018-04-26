@@ -27,7 +27,7 @@ class MenuInSider extends React.Component {
     const { dispatch, state } = this.props;
     switch (key) {
       case "1":
-        if (state.authentication.registerPeriod === "register") {
+        if (state.authentication.registrationStatus === "register") {
           dispatch(
             studentActions.getCoursePendingList(state.authentication.id)
           );
@@ -86,7 +86,7 @@ class MenuInSider extends React.Component {
     else if (userType === "Officer") this.officerDispatchByKey(e.key);
   };
   render() {
-    const { userType, registerPeriod } = this.props;
+    const { userType, registrationStatus } = this.props;
     return (
       <div>
         {userType === "Student" && (
@@ -105,11 +105,11 @@ class MenuInSider extends React.Component {
               }
             >
               <Menu.Item key="1">
-                {registerPeriod === "register"
+                {registrationStatus === "register"
                   ? "ลงทะเบียนเรียน"
                   : "ผลการลงทะเบียนเรียน"}
               </Menu.Item>
-              {registerPeriod === "add/drop" && (
+              {registrationStatus === "add/drop" && (
                 <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
               )}
             </SubMenu>
@@ -200,8 +200,8 @@ class MenuInSider extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { userType, registerPeriod } = state.authentication;
-  return { userType, state, registerPeriod };
+  const { userType, registrationStatus } = state.authentication;
+  return { userType, state, registrationStatus };
 };
 
 export default connect(mapStateToProps)(MenuInSider);

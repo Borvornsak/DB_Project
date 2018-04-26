@@ -4,19 +4,19 @@ import { userConstants } from "../constants";
 // const initialState = user ? { loggedIn: true, user } : {};
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: true
   // firstName: "นนทวี",
   // id: "teacher",
   // lastName: "สายปัญญา",
   // userType: "Teacher"
-  firstName: "สมหญิง",
-  id: "student",
-  lastName: "บุญมี",
-  userType: "Student",
-  // id: "officer",
-  // userType: "Officer",
-  // firstName: "Officer",
-  registerPeriod: "add/drop"
+  // firstName: "สมหญิง",
+  // id: "student",
+  // lastName: "บุญมี",
+  // userType: "Student",
+  // // id: "officer",
+  // // userType: "Officer",
+  // // firstName: "Officer",
+  // registerPeriod: "add/drop"
 };
 
 export function authentication(state = initialState, action) {
@@ -29,7 +29,12 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        ...action.user
+        // ...action.user
+        firstName: action.user.firstName,
+        id: action.user.id,
+        lastName: action.user.lastName,
+        userType: action.user.userType,
+        ...action.user.academicStatus
       };
     case userConstants.LOGIN_FAILURE:
       return {};
