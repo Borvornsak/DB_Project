@@ -4,19 +4,14 @@ import { userConstants } from "../constants";
 // const initialState = user ? { loggedIn: true, user } : {};
 
 const initialState = {
+  firstName: "พชร",
+  id: "5830000121",
+  lastName: "แสนลัง",
   loggedIn: true,
-  // firstName: "นนทวี",
-  // id: "teacher",
-  // lastName: "สายปัญญา",
-  // userType: "Teacher"
-  firstName: "สมหญิง",
-  id: "student",
-  lastName: "บุญมี",
-  userType: "Student"
-  // // id: "officer",
-  // // userType: "Officer",
-  // // firstName: "Officer",
-  // registerPeriod: "add/drop"
+  registrationStatus: "none",
+  semester: 1,
+  userType: "Student",
+  year: 2018
 };
 
 export function authentication(state = initialState, action) {

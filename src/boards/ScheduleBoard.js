@@ -11,12 +11,12 @@ const ScheduleBoard = props => {
       }         ปีการศึกษา ${year}`}</h1>
     );
   };
-  const { year, semester } = props;
+  const { year, semester, scheduleList } = props;
   return (
     <div>
       <Table
         columns={scheduleColumns}
-        dataSource={[]}
+        dataSource={scheduleList ? scheduleList : []}
         pagination={{ position: "None" }}
         title={title(year, semester)}
       />
@@ -44,8 +44,8 @@ const scheduleColumns = [
 
 const mapStateToProps = state => {
   const { year, semester } = state.authentication;
-  console.log(year, semester);
-  return { year, semester };
+  const { scheduleList } = state.schedule;
+  return { year, semester, scheduleList };
 };
 
 export default connect(mapStateToProps)(ScheduleBoard);

@@ -20,7 +20,6 @@ class DocumentBoard extends React.Component {
   handleRequest = () => {
     const { dispatch, id } = this.props;
     dispatch(studentActions.requestDocument(id, this.state.selectedDoc));
-    console.log(this.state.selectedDoc);
   };
 
   render() {

@@ -7,7 +7,8 @@ export const studentService = {
   registerCourse,
   getRegisterResult,
   getDocumentList,
-  requestDocument
+  requestDocument,
+  getSchedule
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -140,6 +141,19 @@ function requestDocument(id, docId) {
     })
   };
   const url = `${apiPath}/requestDocument`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function getSchedule(id) {
+  const requestOptions = {
+    method: "GET"
+  };
+  const url = `${apiPath}/${id}/getSchedule`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);
