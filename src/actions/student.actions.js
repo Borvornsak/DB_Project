@@ -9,7 +9,8 @@ export const studentActions = {
   getCourseSection,
   getCoursePendingList,
   registerCourse,
-  getRegisterResult
+  getRegisterResult,
+  getDocumentList
 };
 
 function getGrade(id) {
@@ -211,5 +212,34 @@ function getRegisterResult(id) {
   }
   function failure(error) {
     return { type: studentConstants.GET_REGISTER_COURSE_FAILURE, error };
+  }
+}
+
+function getDocumentList(id) {
+  return dispatch => {
+    dispatch(request(id));
+
+    studentService.getDocumentList(id).then(
+      documentList => {
+        dispatch(success(documentList));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive document list"));
+      }
+    );
+  };
+  function request(id) {
+    return {
+      type: studentConstants.GET_DOCUMENT_REQUEST,
+      id
+    };
+  }
+  function success(documentList) {
+    return { type: studentConstants.GET_DOCUMENT_SUCCESS, documentList };
+  }
+  function failure(error) {
+    return { type: studentConstants.GET_DOCUMENT_FAILURE, error };
   }
 }

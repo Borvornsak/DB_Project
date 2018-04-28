@@ -9,6 +9,8 @@ import { section } from "./section.reducer";
 import { advisee } from "./advisee.reducer";
 import { register } from "./register.reducer";
 import { registerPeriod } from "./registerPeriod.reducer";
+import { document } from "./document.reducer";
+
 const rootReducer = combineReducers({
   authentication,
   alert,
@@ -18,7 +20,8 @@ const rootReducer = combineReducers({
   section,
   advisee,
   register,
-  registerPeriod
+  registerPeriod,
+  document
 });
 
 export default rootReducer;

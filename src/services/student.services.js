@@ -5,7 +5,8 @@ export const studentService = {
   getCourseSection,
   getCoursePendingList,
   registerCourse,
-  getRegisterResult
+  getRegisterResult,
+  getDocumentList
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -104,6 +105,19 @@ function getRegisterResult(id) {
     method: "GET"
   };
   const url = `${apiPath}/${id}/getRegisterResult`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function getDocumentList(id) {
+  const requestOptions = {
+    method: "GET"
+  };
+  const url = `${apiPath}/${id}/getDocumentList`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);
