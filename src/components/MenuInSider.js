@@ -10,7 +10,7 @@ const studentFeatures = [
   "",
   "/register",
   "/addDropWithdraw",
-  "/timetable",
+  "/schedule",
   "/grade",
   "/document",
   "/fee",

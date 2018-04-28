@@ -1,7 +1,7 @@
 import React from "react";
 
-const TimeTableBoard = () => {
+const ScheduleBoard = () => {
   return <div>ตรวจสอบตารางเรียน</div>;
 };
 
-export default TimeTableBoard;
+export default ScheduleBoard;

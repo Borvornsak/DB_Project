@@ -7,7 +7,7 @@ import {
   GradeBoard,
   DocumentBoard,
   FeeBoard,
-  TimeTableBoard,
+  ScheduleBoard,
   CourseBoard,
   AdviseeBoard,
   RegisterPeriodBoard
@@ -25,7 +25,7 @@ const MenuRoutes = () => {
         <Route path="/dashboard/grade" component={GradeBoard} />
         <Route path="/dashboard/document" component={DocumentBoard} />
         <Route path="/dashboard/fee" component={FeeBoard} />
-        <Route path="/dashboard/timetable" component={TimeTableBoard} />
+        <Route path="/dashboard/schedule" component={ScheduleBoard} />
         <Route path="/dashboard/course" component={CourseBoard} />
         <Route path="/dashboard/advisee" component={AdviseeBoard} />
         <Route
