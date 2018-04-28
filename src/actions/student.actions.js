@@ -10,7 +10,8 @@ export const studentActions = {
   getCoursePendingList,
   registerCourse,
   getRegisterResult,
-  getDocumentList
+  getDocumentList,
+  requestDocument
 };
 
 function getGrade(id) {
@@ -241,5 +242,35 @@ function getDocumentList(id) {
   }
   function failure(error) {
     return { type: studentConstants.GET_DOCUMENT_FAILURE, error };
+  }
+}
+
+function requestDocument(id, docId) {
+  return dispatch => {
+    dispatch(request(id, docId));
+
+    studentService.requestDocument(id, docId).then(
+      requestList => {
+        dispatch(success(requestList));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't register document"));
+      }
+    );
+  };
+  function request(id, docId) {
+    return {
+      type: studentConstants.REQUEST_DOCUMENT_REQUEST,
+      id,
+      docId
+    };
+  }
+  function success(requestList) {
+    return { type: studentConstants.REQUEST_DOCUMENT_SUCCESS, requestList };
+  }
+  function failure(error) {
+    return { type: studentConstants.REQUEST_DOCUMENT_FAILURE, error };
   }
 }

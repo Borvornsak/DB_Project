@@ -1,6 +1,7 @@
 import React from "react";
 import { Select, Table, Button } from "antd";
 import { connect } from "react-redux";
+import { studentActions } from "../actions";
 
 const Option = Select.Option;
 
@@ -17,6 +18,8 @@ class DocumentBoard extends React.Component {
   };
 
   handleRequest = () => {
+    const { dispatch, id } = this.props;
+    dispatch(studentActions.requestDocument(id, this.state.selectedDoc));
     console.log(this.state.selectedDoc);
   };
 
@@ -62,12 +65,18 @@ const requestColumns = [
     title: "Status",
     dataIndex: "status",
     key: "status"
+  },
+  {
+    title: "Request Date",
+    dataIndex: "requestDate",
+    key: "requestDate"
   }
 ];
 
 const mapStateToProps = state => {
+  const { id } = state.authentication;
   const { docList, requestList } = state.document;
-  return { docList, requestList };
+  return { docList, requestList, id };
 };
 
 export default connect(mapStateToProps)(DocumentBoard);

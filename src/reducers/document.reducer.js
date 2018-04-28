@@ -9,12 +9,25 @@ export function document(state = initialState, action) {
         requesting: true,
         id: action.id
       };
+    case studentConstants.REQUEST_DOCUMENT_REQUEST:
+      return {
+        ...state,
+        requesting: true,
+        id: action.id,
+        docId: action.id
+      };
     case studentConstants.GET_DOCUMENT_SUCCESS:
       return {
         ...action.documentList
       };
+    case studentConstants.REQUEST_DOCUMENT_SUCCESS:
+      return {
+        docList: state.docList,
+        requestList: action.requestList
+      };
     case studentConstants.GET_DOCUMENT_FAILURE:
-      return {};
+    case studentConstants.REQUEST_DOCUMENT_FAILURE:
+      return state;
     default:
       return state;
   }

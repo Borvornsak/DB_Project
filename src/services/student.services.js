@@ -6,7 +6,8 @@ export const studentService = {
   getCoursePendingList,
   registerCourse,
   getRegisterResult,
-  getDocumentList
+  getDocumentList,
+  requestDocument
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -118,6 +119,27 @@ function getDocumentList(id) {
     method: "GET"
   };
   const url = `${apiPath}/${id}/getDocumentList`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function requestDocument(id, docId) {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id,
+      docId
+    })
+  };
+  const url = `${apiPath}/requestDocument`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);
