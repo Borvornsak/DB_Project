@@ -7,3 +7,4 @@ export { default as ScheduleBoard } from "./ScheduleBoard";
 export { default as CourseBoard } from "./CourseBoard";
 export { default as AdviseeBoard } from "./AdviseeBoard";
 export { default as RegisterPeriodBoard } from "./RegisterPeriodBoard";
+export { default as RequestBoard } from "./RequestBoard";

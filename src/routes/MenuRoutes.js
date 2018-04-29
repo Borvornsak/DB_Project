@@ -10,7 +10,8 @@ import {
   ScheduleBoard,
   CourseBoard,
   AdviseeBoard,
-  RegisterPeriodBoard
+  RegisterPeriodBoard,
+  RequestBoard
 } from "../boards";
 
 const MenuRoutes = () => {
@@ -32,6 +33,7 @@ const MenuRoutes = () => {
           path="/dashboard/registerPeriod"
           component={RegisterPeriodBoard}
         />
+        <Route path="/dashboard/request" component={RequestBoard} />
       </Switch>
     </Router>
   );
