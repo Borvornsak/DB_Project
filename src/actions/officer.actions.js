@@ -4,7 +4,8 @@ import { alertActions } from "./";
 
 export const officerActions = {
   manageRegisterPeriod,
-  getRequestList
+  getRequestList,
+  submitRequest
 };
 
 function manageRegisterPeriod(option) {
@@ -63,5 +64,36 @@ function getRequestList() {
   }
   function failure(error) {
     return { type: officerConstants.GET_REQUEST_FAILURE, error };
+  }
+}
+
+function submitRequest(barcode, status) {
+  return dispatch => {
+    dispatch(request(barcode, status));
+
+    officerService.submitRequest(barcode, status).then(
+      requestList => {
+        dispatch(success(requestList));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        console.log(error);
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't submit request"));
+      }
+    );
+  };
+  function request(barcode, status) {
+    return {
+      type: officerConstants.SUBMIT_REQUEST_REQUEST,
+      barcode,
+      status
+    };
+  }
+  function success(requestList) {
+    return { type: officerConstants.SUBMIT_REQUEST_SUCCESS, requestList };
+  }
+  function failure(error) {
+    return { type: officerConstants.SUBMIT_REQUEST_FAILURE, error };
   }
 }

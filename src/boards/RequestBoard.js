@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table, Popconfirm } from "antd";
+import { officerActions } from "../actions";
 
 class RequestBoard extends React.Component {
   constructor(props) {
@@ -34,19 +35,31 @@ class RequestBoard extends React.Component {
       {
         title: "Operation",
         key: "operation",
-        render: (text, record) => (
-          <Popconfirm
-            title="Sure to Approve?"
-            onConfirm={() => console.log(record)}
-          >
-            <a>Approve</a>
-          </Popconfirm>
-        )
+        render: (text, record) => {
+          return record.status === "Pending" ? (
+            <Popconfirm
+              title="Sure to Approve?"
+              onConfirm={() => this.onAppropve(record.barcode, record.status)}
+            >
+              <a>Approve</a>
+            </Popconfirm>
+          ) : record.status === "Processing" ? (
+            <Popconfirm
+              title="Sure to Finish?"
+              onConfirm={() => this.onAppropve(record.barcode, record.status)}
+            >
+              <a>Finish</a>
+            </Popconfirm>
+          ) : null;
+        }
       }
     ];
   }
 
-  onAppropve = () => {};
+  onAppropve = (barcode, status) => {
+    const { dispatch } = this.props;
+    dispatch(officerActions.submitRequest(barcode, status));
+  };
 
   render() {
     const { requestList } = this.props;
