@@ -4,13 +4,13 @@ import { userConstants } from "../constants";
 // const initialState = user ? { loggedIn: true, user } : {};
 
 const initialState = {
-  firstName: "พชร",
-  id: "5830000121",
-  lastName: "แสนลัง",
+  firstName: "Gizela",
+  id: "2110010001",
+  lastName: "Bach",
   loggedIn: true,
   registrationStatus: "none",
   semester: 1,
-  userType: "Student",
+  userType: "Officer",
   year: 2018
 };
 

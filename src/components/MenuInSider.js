@@ -2,7 +2,7 @@ import React from "react";
 import { Menu, Icon } from "antd";
 import { connect } from "react-redux";
 import { history } from "../helpers";
-import { studentActions, teacherActions } from "../actions";
+import { studentActions, teacherActions, officerActions } from "../actions";
 
 const { SubMenu } = Menu;
 
@@ -66,8 +66,10 @@ class MenuInSider extends React.Component {
   };
 
   officerDispatchByKey = key => {
+    const { dispatch } = this.props;
     switch (key) {
       case "1":
+        dispatch(officerActions.getRequestList());
         break;
       case "2":
         break;
