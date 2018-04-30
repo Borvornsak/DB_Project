@@ -12,6 +12,7 @@ import { registerPeriod } from "./registerPeriod.reducer";
 import { document } from "./document.reducer";
 import { schedule } from "./schedule.reducer";
 import { request } from "./request.reducer";
+import { approve } from "./approve.reducer";
 const rootReducer = combineReducers({
   authentication,
   alert,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   registerPeriod,
   document,
   schedule,
-  request
+  request,
+  approve
 });
 
 export default rootReducer;

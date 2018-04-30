@@ -8,7 +8,9 @@ export const studentService = {
   getRegisterResult,
   getDocumentList,
   requestDocument,
-  getSchedule
+  getSchedule,
+  addDropCourse,
+  getApproveCourse
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -154,6 +156,40 @@ function getSchedule(id) {
     method: "GET"
   };
   const url = `${apiPath}/${id}/getSchedule`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function addDropCourse(id, courseList) {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id,
+      courseList
+    })
+  };
+  const url = `${apiPath}/addDropCourse`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function getApproveCourse(id) {
+  const requestOptions = {
+    method: "GET"
+  };
+  const url = `${apiPath}/${id}/getApproveCourse`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);

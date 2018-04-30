@@ -35,6 +35,7 @@ class MenuInSider extends React.Component {
         }
         break;
       case "2":
+        dispatch(studentActions.getApproveCourse(state.authentication.id));
         break;
       case "3":
         dispatch(studentActions.getSchedule(state.authentication.id));

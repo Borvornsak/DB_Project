@@ -1,22 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Table, Input, Button, Popconfirm } from "antd";
-
-// class EditableCell extends React.Component {
-//   state = {
-//     value: this.props.value
-//   };
-//   handleChange = e => {
-//     const value = e.target.value;
-//     this.setState({ value });
-//     if (this.props.onChange) {
-//       this.props.onChange(value);
-//     }
-//   };
-//   render() {
-//     const { value } = this.state;
-//     return <Input value={value} onChange={this.handleChange} />;
-//   }
-// }
+import { studentActions } from "../actions";
 
 class AddDropWithdrawBorad extends React.Component {
   constructor(props) {
@@ -47,6 +32,46 @@ class AddDropWithdrawBorad extends React.Component {
             </Popconfirm>
           ) : null;
         }
+      }
+    ];
+
+    this.registeredColumns = [
+      {
+        title: "Course Id",
+        dataIndex: "courseId",
+        width: "15%"
+      },
+      {
+        title: "Course Name",
+        dataIndex: "courseName",
+        width: "25%"
+      },
+      {
+        title: "Section",
+        dataIndex: "sectionNumber",
+        width: "15%"
+      },
+      {
+        title: "Credit",
+        dataIndex: "credit",
+        width: "15%"
+      },
+      {
+        title: "Status",
+        dataIndex: "status",
+        width: "15%"
+      },
+      {
+        title: "Operation",
+        width: "15%",
+        render: (text, record) => (
+          <Popconfirm
+            title="Sure to drop?"
+            onConfirm={() => this.handleDrop(record.courseId, record.section)}
+          >
+            <a>Drop</a>
+          </Popconfirm>
+        )
       }
     ];
 
@@ -93,13 +118,27 @@ class AddDropWithdrawBorad extends React.Component {
       count: count + 1
     });
   };
+  handleDrop = (courseId, section) => {
+    const { dispatch, id } = this.props;
+    dispatch(
+      studentActions.addDropCourse(id, [{ courseId, section, option: "drop" }])
+    );
+  };
 
   handleButtonSubmit = () => {
     const { dataSource } = this.state;
-    const filterItems = dataSource.filter(
-      item => item.courseId && item.sectionNumber
-    );
+    const filterItems = dataSource
+      .filter(item => item.courseId && item.sectionNumber)
+      .map(item => {
+        return {
+          courseId: item.courseId,
+          section: item.sectionNumber,
+          option: "add"
+        };
+      });
     console.log(filterItems);
+    const { dispatch, id } = this.props;
+    dispatch(studentActions.addDropCourse(id, filterItems));
   };
 
   handleButtonReset = () => {
@@ -117,7 +156,7 @@ class AddDropWithdrawBorad extends React.Component {
 
   render() {
     const { dataSource } = this.state;
-    const columns = this.columns;
+    const { approveList } = this.props;
     return (
       <div
         style={{
@@ -126,14 +165,21 @@ class AddDropWithdrawBorad extends React.Component {
           alignItems: "center"
         }}
       >
-        <div style={{ width: "80%" }}>
+        <Table
+          bordered
+          dataSource={approveList ? approveList : []}
+          columns={this.registeredColumns}
+          pagination={false}
+          style={{ width: "80%" }}
+        />
+        <div style={{ width: "80%", marginTop: "50px" }}>
           <Button style={{ marginBottom: "8px" }} onClick={this.handleAdd}>
             Add
           </Button>
           <Table
             bordered
             dataSource={dataSource}
-            columns={columns}
+            columns={this.columns}
             pagination={false}
           />
         </div>
@@ -160,4 +206,10 @@ class AddDropWithdrawBorad extends React.Component {
   }
 }
 
-export default AddDropWithdrawBorad;
+const mapStateToProps = state => {
+  const { id } = state.authentication;
+  const { approveList } = state.approve;
+  return { id, approveList };
+};
+
+export default connect(mapStateToProps)(AddDropWithdrawBorad);

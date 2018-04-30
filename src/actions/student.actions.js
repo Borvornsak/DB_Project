@@ -12,7 +12,9 @@ export const studentActions = {
   getRegisterResult,
   getDocumentList,
   requestDocument,
-  getSchedule
+  getSchedule,
+  addDropCourse,
+  getApproveCourse
 };
 
 function getGrade(id) {
@@ -302,5 +304,64 @@ function getSchedule(id) {
   }
   function failure(error) {
     return { type: studentConstants.GET_SCHEDULE_FAILURE, error };
+  }
+}
+
+function addDropCourse(option, id, courseList) {
+  return dispatch => {
+    dispatch(request(option, id, courseList));
+
+    studentService.addDropCourse(option, id, courseList).then(
+      approveList => {
+        dispatch(success(approveList));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("register FAIL!!!"));
+      }
+    );
+  };
+  function request(id, courseList) {
+    return {
+      type: studentConstants.ADD_DROP_COURSE_REQUEST,
+      id,
+      courseList
+    };
+  }
+  function success(approveList) {
+    return { type: studentConstants.ADD_DROP_COURSE_SUCCESS, approveList };
+  }
+  function failure(error) {
+    return { type: studentConstants.ADD_DROP_COURSE_FAILURE, error };
+  }
+}
+
+function getApproveCourse(id) {
+  return dispatch => {
+    dispatch(request(id));
+
+    studentService.getApproveCourse(id).then(
+      approveList => {
+        dispatch(success(approveList));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive approve course list"));
+      }
+    );
+  };
+  function request(id) {
+    return {
+      type: studentConstants.GET_APPROVE_COURSE_REQUEST,
+      id
+    };
+  }
+  function success(approveList) {
+    return { type: studentConstants.GET_APPROVE_COURSE_SUCCESS, approveList };
+  }
+  function failure(error) {
+    return { type: studentConstants.GET_APPROVE_COURSE_FAILURE, error };
   }
 }
