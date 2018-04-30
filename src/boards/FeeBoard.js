@@ -1,13 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import { Table } from "antd";
-
-const P = styled.p`
-  margin: 0px 0px;
-  font-size: 1.5rem;
-  color: black;
-`;
 
 const FeeBoard = props => {
   const { paymentList } = props;

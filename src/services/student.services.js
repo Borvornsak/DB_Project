@@ -183,7 +183,6 @@ function addDropCourse(id, courseList) {
       return Promise.reject(response.statusText);
     }
     console.log("DONE");
-    console.log(response.json());
     return response.json();
   });
 }

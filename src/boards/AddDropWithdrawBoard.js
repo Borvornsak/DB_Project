@@ -35,6 +35,7 @@ class AddDropWithdrawBorad extends React.Component {
       }
     ];
 
+    const { registrationStatus } = this.props;
     this.registeredColumns = [
       {
         title: "Course Id",
@@ -66,12 +67,16 @@ class AddDropWithdrawBorad extends React.Component {
         width: "15%",
         render: (text, record) => (
           <Popconfirm
-            title="Sure to drop?"
+            title={
+              registrationStatus === "add/drop"
+                ? "Sure to drop?"
+                : "Sure to withdraw?"
+            }
             onConfirm={() =>
               this.handleDrop(record.courseId, record.sectionNumber)
             }
           >
-            <a>Drop</a>
+            <a>{registrationStatus === "add/drop" ? "Drop" : "Withdraw"}</a>
           </Popconfirm>
         )
       }
@@ -158,7 +163,7 @@ class AddDropWithdrawBorad extends React.Component {
 
   render() {
     const { dataSource } = this.state;
-    const { approveList } = this.props;
+    const { approveList, registrationStatus } = this.props;
     return (
       <div
         style={{
@@ -174,44 +179,48 @@ class AddDropWithdrawBorad extends React.Component {
           pagination={false}
           style={{ width: "80%" }}
         />
-        <div style={{ width: "80%", marginTop: "50px" }}>
-          <Button style={{ marginBottom: "8px" }} onClick={this.handleAdd}>
-            Add
-          </Button>
-          <Table
-            bordered
-            dataSource={dataSource}
-            columns={this.columns}
-            pagination={false}
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "20px 20px"
-          }}
-        >
-          <Button
-            type="primary"
-            onClick={this.handleButtonSubmit}
-            style={{ margin: "0px 30px" }}
-          >
-            Submit
-          </Button>
-          <Button type="danger" onClick={this.handleButtonReset}>
-            Reset
-          </Button>
-        </div>
+        {registrationStatus === "add/drop" && (
+          <div>
+            <div style={{ width: "80%", marginTop: "50px" }}>
+              <Button style={{ marginBottom: "8px" }} onClick={this.handleAdd}>
+                Add
+              </Button>
+              <Table
+                bordered
+                dataSource={dataSource}
+                columns={this.columns}
+                pagination={false}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "20px 20px"
+              }}
+            >
+              <Button
+                type="primary"
+                onClick={this.handleButtonSubmit}
+                style={{ margin: "0px 30px" }}
+              >
+                Submit
+              </Button>
+              <Button type="danger" onClick={this.handleButtonReset}>
+                Reset
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { id } = state.authentication;
+  const { id, registrationStatus } = state.authentication;
   const { approveList } = state.approve;
-  return { id, approveList };
+  return { id, approveList, registrationStatus };
 };
 
 export default connect(mapStateToProps)(AddDropWithdrawBorad);

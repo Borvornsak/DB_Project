@@ -17,7 +17,7 @@ const studentFeatures = [
   "/course"
 ];
 
-const teacherFeatures = ["", "/studentScore", "/advisee"];
+const teacherFeatures = ["", "/advisee"];
 
 const officerFeatures = ["", "/request", "/registerPeriod"];
 
@@ -59,8 +59,6 @@ class MenuInSider extends React.Component {
     const { dispatch, state } = this.props;
     switch (key) {
       case "1":
-        break;
-      case "2":
         dispatch(teacherActions.getAdvisee(state.authentication.id));
         break;
       default:
@@ -112,9 +110,10 @@ class MenuInSider extends React.Component {
                   ? "ลงทะเบียนเรียน"
                   : "ผลการลงทะเบียนเรียน"}
               </Menu.Item>
-              {registrationStatus === "add/drop" && (
-                <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
-              )}
+              {registrationStatus === "add/drop" ||
+                (registrationStatus === "withdraw" && (
+                  <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
+                ))}
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -167,8 +166,7 @@ class MenuInSider extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="1">บันทึกผลการเรียนนิสิต</Menu.Item>
-              <Menu.Item key="2" style={{ height: "60px", lineHeight: "2em" }}>
+              <Menu.Item key="1" style={{ height: "60px", lineHeight: "2em" }}>
                 ติดตามผลการเรียนของ<br />นิสิตในที่ปรึกษา
               </Menu.Item>
             </SubMenu>
