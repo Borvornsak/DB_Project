@@ -67,7 +67,9 @@ class AddDropWithdrawBorad extends React.Component {
         render: (text, record) => (
           <Popconfirm
             title="Sure to drop?"
-            onConfirm={() => this.handleDrop(record.courseId, record.section)}
+            onConfirm={() =>
+              this.handleDrop(record.courseId, record.sectionNumber)
+            }
           >
             <a>Drop</a>
           </Popconfirm>

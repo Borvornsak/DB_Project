@@ -10,7 +10,8 @@ export const studentService = {
   requestDocument,
   getSchedule,
   addDropCourse,
-  getApproveCourse
+  getApproveCourse,
+  getPaymentStatus
 };
 
 const apiPath = "http://localhost:7555/student";
@@ -181,6 +182,8 @@ function addDropCourse(id, courseList) {
     if (!response.ok) {
       return Promise.reject(response.statusText);
     }
+    console.log("DONE");
+    console.log(response.json());
     return response.json();
   });
 }
@@ -190,6 +193,19 @@ function getApproveCourse(id) {
     method: "GET"
   };
   const url = `${apiPath}/${id}/getApproveCourse`;
+  return fetch(url, requestOptions).then(response => {
+    if (!response.ok) {
+      return Promise.reject(response.statusText);
+    }
+    return response.json();
+  });
+}
+
+function getPaymentStatus(id) {
+  const requestOptions = {
+    method: "GET"
+  };
+  const url = `${apiPath}/${id}/getPaymentStatus`;
   return fetch(url, requestOptions).then(response => {
     if (!response.ok) {
       return Promise.reject(response.statusText);

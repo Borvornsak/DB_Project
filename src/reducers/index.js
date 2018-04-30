@@ -13,6 +13,8 @@ import { document } from "./document.reducer";
 import { schedule } from "./schedule.reducer";
 import { request } from "./request.reducer";
 import { approve } from "./approve.reducer";
+import { payment } from "./payment.reducer";
+
 const rootReducer = combineReducers({
   authentication,
   alert,
@@ -26,7 +28,8 @@ const rootReducer = combineReducers({
   document,
   schedule,
   request,
-  approve
+  approve,
+  payment
 });
 
 export default rootReducer;

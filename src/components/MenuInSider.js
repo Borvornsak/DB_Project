@@ -47,6 +47,7 @@ class MenuInSider extends React.Component {
         dispatch(studentActions.getDocumentList(state.authentication.id));
         break;
       case "6":
+        dispatch(studentActions.getPaymentStatus(state.authentication.id));
         break;
       case "7":
         break;

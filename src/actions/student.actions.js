@@ -14,7 +14,8 @@ export const studentActions = {
   requestDocument,
   getSchedule,
   addDropCourse,
-  getApproveCourse
+  getApproveCourse,
+  getPaymentStatus
 };
 
 function getGrade(id) {
@@ -307,16 +308,17 @@ function getSchedule(id) {
   }
 }
 
-function addDropCourse(option, id, courseList) {
+function addDropCourse(id, courseList) {
   return dispatch => {
-    dispatch(request(option, id, courseList));
+    dispatch(request(id, courseList));
 
-    studentService.addDropCourse(option, id, courseList).then(
+    studentService.addDropCourse(id, courseList).then(
       approveList => {
         dispatch(success(approveList));
         dispatch(alertActions.clear());
       },
       error => {
+        console.log(error);
         dispatch(failure(error));
         dispatch(alertActions.error("register FAIL!!!"));
       }
@@ -363,5 +365,34 @@ function getApproveCourse(id) {
   }
   function failure(error) {
     return { type: studentConstants.GET_APPROVE_COURSE_FAILURE, error };
+  }
+}
+
+function getPaymentStatus(id) {
+  return dispatch => {
+    dispatch(request(id));
+
+    studentService.getPaymentStatus(id).then(
+      payment => {
+        dispatch(success(payment));
+        dispatch(alertActions.clear());
+      },
+      error => {
+        dispatch(failure(error));
+        dispatch(alertActions.error("Can't retrive payment data"));
+      }
+    );
+  };
+  function request(id) {
+    return {
+      type: studentConstants.GET_PAYMENT_REQUEST,
+      id
+    };
+  }
+  function success(payment) {
+    return { type: studentConstants.GET_PAYMENT_SUCCESS, payment };
+  }
+  function failure(error) {
+    return { type: studentConstants.GET_PAYMENT_FAILURE, error };
   }
 }
