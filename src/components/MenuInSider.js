@@ -110,10 +110,10 @@ class MenuInSider extends React.Component {
                   ? "ลงทะเบียนเรียน"
                   : "ผลการลงทะเบียนเรียน"}
               </Menu.Item>
-              {registrationStatus === "add/drop" ||
-                (registrationStatus === "withdraw" && (
-                  <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
-                ))}
+              {(registrationStatus === "add/drop" ||
+                registrationStatus === "withdraw") && (
+                <Menu.Item key="2">เพิ่ม ลด ถอน รายวิชา</Menu.Item>
+              )}
             </SubMenu>
             <SubMenu
               key="sub2"

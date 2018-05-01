@@ -73,7 +73,9 @@ class AddDropWithdrawBorad extends React.Component {
                 : "Sure to withdraw?"
             }
             onConfirm={() =>
-              this.handleDrop(record.courseId, record.sectionNumber)
+              registrationStatus === "add/drop"
+                ? this.handleDrop(record.courseId, record.sectionNumber)
+                : this.handleWithdraw(record.courseId, record.sectionNumber)
             }
           >
             <a>{registrationStatus === "add/drop" ? "Drop" : "Withdraw"}</a>
@@ -132,6 +134,15 @@ class AddDropWithdrawBorad extends React.Component {
     );
   };
 
+  handleWithdraw = (courseId, section) => {
+    const { dispatch, id } = this.props;
+    dispatch(
+      studentActions.addDropCourse(id, [
+        { courseId, section, option: "withdraw" }
+      ])
+    );
+  };
+
   handleButtonSubmit = () => {
     const { dataSource } = this.state;
     const filterItems = dataSource
@@ -180,8 +191,8 @@ class AddDropWithdrawBorad extends React.Component {
           style={{ width: "80%" }}
         />
         {registrationStatus === "add/drop" && (
-          <div>
-            <div style={{ width: "80%", marginTop: "50px" }}>
+          <div style={{ width: "80%", marginTop: "50px" }}>
+            <div>
               <Button style={{ marginBottom: "8px" }} onClick={this.handleAdd}>
                 Add
               </Button>
