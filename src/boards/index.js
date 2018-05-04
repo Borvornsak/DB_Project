@@ -1,0 +1,10 @@
+export { default as RegisterBoard } from "./RegisterBoard";
+export { default as AddDropWithdrawBoard } from "./AddDropWithdrawBoard";
+export { default as GradeBoard } from "./GradeBoard";
+export { default as DocumentBoard } from "./DocumentBoard";
+export { default as FeeBoard } from "./FeeBoard";
+export { default as ScheduleBoard } from "./ScheduleBoard";
+export { default as CourseBoard } from "./CourseBoard";
+export { default as AdviseeBoard } from "./AdviseeBoard";
+export { default as RegisterPeriodBoard } from "./RegisterPeriodBoard";
+export { default as RequestBoard } from "./RequestBoard";
