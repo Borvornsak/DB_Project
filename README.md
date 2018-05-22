@@ -1,10 +1,11 @@
-# Database Project [Front-end]
+# DB_Project [Front-end]
 
-## Objective
+This repositort is a part of 2110422 Database Management Systems Design course project of Chulalongkorn University. The full application is in <https://github.com/pangpond510/DB_Project_App> .
 
-This repository is initiated for project of DB JAM team which is a part of 2110422 Database Management Systems Design subject of Chulalongkorn University. The objective of this project is to imitate database from Reg Chula system with provide core features to student, teacher, and officer. This repository works with back-end repository from <https://github.com/pangpond510/DB_Project_Server>.
+## Getting Started
 
-## Preparation
+### Installation
+
 1. Clone this repository to your machine.
 
 	```
@@ -18,21 +19,15 @@ This repository is initiated for project of DB JAM team which is a part of 21104
 		npm install
 	```
 	
-## Manual
-1. Start our front-end client
+### Start Client
+
+1. **make sure that you have already start back-end and database server.**
+2. You can start client by running
 
 	```
 		npm start
 	```
-
-2. Open your browser at `localhost:3000` and **make sure that you have already start back-end server I mentioned above**
-3. You can access our system by using this demo account
-
-	| Account	| Username	| Password	|
-	|:--------|:-----------	|:-----------	|
-	| Stuent 	| |	|
-	| Teacher | |	|
-	| Officer | |	|
-
+3. Open your browser at `localhost:3000`
+	
 
 
