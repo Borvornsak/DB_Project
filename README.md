@@ -9,14 +9,14 @@ This repositort is a part of 2110422 Database Management Systems Design course p
 1. Clone this repository to your machine.
 
 	```
-		git clone https://github.com/Borvornsak/DB_Project.git
+	$ git clone https://github.com/Borvornsak/DB_Project.git
 	```
 
 2. Open project from a folder which you clone repo in and install project's dependency.
 
 	```
-		cd DB_Project
-		npm install
+	$ cd DB_Project
+	$ npm install
 	```
 	
 ### Start Client
@@ -25,7 +25,7 @@ This repositort is a part of 2110422 Database Management Systems Design course p
 2. You can start client by running
 
 	```
-		npm start
+	$ npm start
 	```
 3. Open your browser at `localhost:3000`
 	
